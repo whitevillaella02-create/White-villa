@@ -35,7 +35,7 @@ body{
   line-height:1.5;
 }
 
-/* 🔥 HERO FRAME (NEW) */
+/* 🔥 HERO FRAME */
 .hero-frame{
   margin:20px;
   padding:5px;
@@ -53,13 +53,13 @@ body{
   border-radius:15px;
 }
 
-/* 🔥 ANIMATION */
 @keyframes gradientMove {
   0% { background-position:0% 50%; }
   50% { background-position:100% 50%; }
   100% { background-position:0% 50%; }
 }
 
+/* 🔥 EXPLORE BOX */
 .explore-box{
   margin:20px;
   padding:3px;
@@ -74,6 +74,12 @@ body{
   text-align:center;
 }
 
+.explore-inner h3{
+  margin-bottom:10px;
+  color:#333;
+}
+
+/* 🔥 ROOMS */
 .section{
   padding:20px;
   text-align:center;
@@ -103,7 +109,7 @@ body{
   font-weight:bold;
 }
 
-/* 🔥 CONTACT BUTTON */
+/* 🔥 CONTACT */
 .contact-btn{
   display:block;
   width:80%;
@@ -161,18 +167,20 @@ textarea{
   <img class="logo" src="file_0000000008a4720ba5faf52db7af5a06.png">
 
   <p class="description">
-    Welcome to White Villa Ella, a peaceful retreat surrounded by beautiful nature and stunning mountain views. Our hotel offers comfortable and relaxing rooms designed to give you a perfect getaway from busy city life. Enjoy fresh air, calm surroundings, and warm Sri Lankan hospitality. Whether you are traveling with family or friends, White Villa Ella is the ideal place to relax, unwind, and create unforgettable memories.
+    Welcome to White Villa Ella, a peaceful retreat surrounded by beautiful nature and stunning mountain views.
   </p>
 </div>
 
-<!-- 🔥 UPDATED HERO WITH FRAME -->
+<!-- HERO -->
 <div class="hero-frame">
   <div class="hero"></div>
 </div>
 
+<!-- 🔥 NEW BOX -->
 <div class="explore-box">
   <div class="explore-inner">
-    <a href="explore.html">🌿 Explore the Villa</a>
+    <h3>🌿 Cinnamon & Nature Escape</h3>
+    <a href="explore.html" class="btn">Explore the Villa</a>
   </div>
 </div>
 
@@ -217,7 +225,7 @@ textarea{
 </div>
 
 <div class="footer">
-🌿 Thank For Choosing  us
+🌿 Thank For Choosing us
 </div>
 
 <script>
