@@ -25,13 +25,30 @@ input{
   border:1px solid #ccc;
 }
 
+/* LABEL */
+.label{
+  display:block;
+  text-align:left;
+  width:90%;
+  margin:auto;
+  font-weight:bold;
+  margin-top:10px;
+}
+
+/* TOTAL PRICE */
+#total{
+  font-weight:bold;
+  color:#0f2027;
+  margin-top:10px;
+}
+
 .btn{
   padding:10px 20px;
   background:#ff9800;
   color:white;
   border:none;
   border-radius:5px;
-  margin-top:10px;
+  margin-top:15px;
 }
 </style>
 </head>
@@ -52,20 +69,29 @@ input{
 <input type="text" id="phone" placeholder="Contact Number">
 
 <!-- DATE -->
-<input type="date" id="checkin" onchange="calculateNights()">
-<input type="date" id="checkout" onchange="calculateNights()">
+<label class="label">Check-in Date</label>
+<input type="date" id="checkin" onchange="calculateAll()">
 
-<!-- AUTO NIGHTS -->
+<label class="label">Check-out Date</label>
+<input type="date" id="checkout" onchange="calculateAll()">
+
+<!-- NIGHTS -->
 <input type="number" id="nights" placeholder="How many nights" readonly>
 
+<!-- GUESTS -->
 <input type="number" id="guests" placeholder="How many guests">
+
+<!-- TOTAL PRICE -->
+<div id="total"></div>
 
 <button class="btn" onclick="sendWhatsApp()">ORDER NOW</button>
 
 <script>
 
-// 🔥 AUTO CALCULATE NIGHTS
-function calculateNights(){
+let pricePerNight = 7000;
+
+// 🔥 CALCULATE NIGHTS + PRICE
+function calculateAll(){
   let checkin = document.getElementById("checkin").value;
   let checkout = document.getElementById("checkout").value;
 
@@ -78,8 +104,13 @@ function calculateNights(){
 
     if(nights > 0){
       document.getElementById("nights").value = nights;
+
+      // 💰 TOTAL PRICE
+      let total = nights * pricePerNight;
+      document.getElementById("total").innerText = "Total Price: Rs. " + total;
     }else{
       document.getElementById("nights").value = "";
+      document.getElementById("total").innerText = "";
     }
   }
 }
@@ -96,7 +127,9 @@ let checkout = document.getElementById("checkout").value;
 let nights = document.getElementById("nights").value;
 let guests = document.getElementById("guests").value;
 
-// 📅 NICE DATE FORMAT
+let total = nights * pricePerNight;
+
+// 📅 FORMAT
 let checkinDate = new Date(checkin).toLocaleDateString();
 let checkoutDate = new Date(checkout).toLocaleDateString();
 
@@ -112,7 +145,9 @@ Check-in Date: ${checkinDate}
 Check-out Date: ${checkoutDate}
 
 Nights: ${nights}
-Guests: ${guests}`;
+Guests: ${guests}
+
+Total Price: Rs. ${total}`;
 
 let url = "https://wa.me/94703584922?text=" + encodeURIComponent(message);
 
