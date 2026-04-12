@@ -31,17 +31,19 @@ body{
   padding:15px;
 }
 
+/* ❌ Remove grid look */
 .grid{
-  display:grid;
-  grid-template-columns:repeat(2, 1fr);
-  gap:10px;
+  display:block;
 }
 
+/* 📸 Big vertical images */
 img{
   width:100%;
-  border-radius:10px;
+  border-radius:12px;
+  margin-bottom:15px;
 }
 
+/* 🎥 video */
 video{
   width:100%;
   border-radius:10px;
@@ -75,7 +77,6 @@ video{
 
     <video controls>
       <source src="VID-20260412-WA0110.mp4" type="video/mp4">
-      Your browser does not support video.
     </video>
 
     <video controls>
