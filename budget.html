@@ -34,6 +34,26 @@ input{
   margin-top:10px;
 }
 
+/* ⭐ ROOM FEATURES BOX */
+.features{
+  width:90%;
+  margin:15px auto;
+  background:white;
+  padding:15px;
+  border-radius:10px;
+  box-shadow:0 0 10px rgba(0,0,0,0.1);
+  text-align:left;
+}
+
+.features h3{
+  margin-bottom:10px;
+}
+
+.features p{
+  margin:5px 0;
+}
+
+/* TOTAL */
 #total{
   font-weight:bold;
   color:#0f2027;
@@ -61,6 +81,13 @@ input{
 <img src="bud4.jpg">
 <img src="bud5.jpg">
 
+<!-- ⭐ ROOM FEATURES -->
+<div class="features">
+  <h3>Room Features</h3>
+  <p>📶 Free WiFi</p>
+  <p>🚿 Hot Water</p>
+</div>
+
 <!-- FORM -->
 <input type="text" id="name" placeholder="Customer Name">
 <input type="text" id="nic" placeholder="NIC / Passport No">
@@ -81,7 +108,7 @@ input{
 
 <script>
 
-let pricePerNight = 4000; // 💰 Budget price
+let pricePerNight = 4000;
 
 // 🔥 CALCULATE
 function calculateAll(){
