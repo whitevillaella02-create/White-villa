@@ -25,7 +25,6 @@ input{
   border:1px solid #ccc;
 }
 
-/* LABEL */
 .label{
   display:block;
   text-align:left;
@@ -35,7 +34,6 @@ input{
   margin-top:10px;
 }
 
-/* TOTAL PRICE */
 #total{
   font-weight:bold;
   color:#0f2027;
@@ -68,20 +66,15 @@ input{
 <input type="text" id="nic" placeholder="NIC / Passport No">
 <input type="text" id="phone" placeholder="Contact Number">
 
-<!-- DATE -->
 <label class="label">Check-in Date</label>
 <input type="date" id="checkin" onchange="calculateAll()">
 
 <label class="label">Check-out Date</label>
 <input type="date" id="checkout" onchange="calculateAll()">
 
-<!-- NIGHTS -->
 <input type="number" id="nights" placeholder="How many nights" readonly>
-
-<!-- GUESTS -->
 <input type="number" id="guests" placeholder="How many guests">
 
-<!-- TOTAL PRICE -->
 <div id="total"></div>
 
 <button class="btn" onclick="sendWhatsApp()">ORDER NOW</button>
@@ -90,7 +83,7 @@ input{
 
 let pricePerNight = 7000;
 
-// 🔥 CALCULATE NIGHTS + PRICE
+// 🔥 CALCULATE
 function calculateAll(){
   let checkin = document.getElementById("checkin").value;
   let checkout = document.getElementById("checkout").value;
@@ -105,7 +98,6 @@ function calculateAll(){
     if(nights > 0){
       document.getElementById("nights").value = nights;
 
-      // 💰 TOTAL PRICE
       let total = nights * pricePerNight;
       document.getElementById("total").innerText = "Total Price: Rs. " + total;
     }else{
@@ -115,24 +107,30 @@ function calculateAll(){
   }
 }
 
-// 📲 WHATSAPP SEND
+// 📲 WHATSAPP + VALIDATION
 function sendWhatsApp(){
 
-let name = document.getElementById("name").value;
-let nic = document.getElementById("nic").value;
-let phone = document.getElementById("phone").value;
-
+let name = document.getElementById("name").value.trim();
+let nic = document.getElementById("nic").value.trim();
+let phone = document.getElementById("phone").value.trim();
 let checkin = document.getElementById("checkin").value;
 let checkout = document.getElementById("checkout").value;
 let nights = document.getElementById("nights").value;
-let guests = document.getElementById("guests").value;
+let guests = document.getElementById("guests").value.trim();
 
-let total = nights * pricePerNight;
+// ❌ VALIDATION
+if(!name || !nic || !phone || !checkin || !checkout || !nights || !guests){
+  alert("⚠️ Please fill all details!");
+  return;
+}
 
 // 📅 FORMAT
 let checkinDate = new Date(checkin).toLocaleDateString();
 let checkoutDate = new Date(checkout).toLocaleDateString();
 
+let total = nights * pricePerNight;
+
+// ✅ MESSAGE
 let message = `Room Booking:
 
 Room: Family Room With Mountain View
