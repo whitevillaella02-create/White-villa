@@ -5,10 +5,49 @@
 <title>Budget Room</title>
 
 <style>
-body{font-family:Arial;text-align:center;background:#f5f5f5;}
-img{width:90%;border-radius:10px;margin-top:10px;}
-input{width:90%;padding:10px;margin:8px;border-radius:5px;border:1px solid #ccc;}
-.btn{padding:10px 20px;background:#ff9800;color:white;border:none;border-radius:5px;}
+body{
+  font-family:Arial;
+  text-align:center;
+  background:#f5f5f5;
+}
+
+img{
+  width:90%;
+  border-radius:10px;
+  margin-top:10px;
+}
+
+input{
+  width:90%;
+  padding:10px;
+  margin:8px;
+  border-radius:5px;
+  border:1px solid #ccc;
+}
+
+.label{
+  display:block;
+  text-align:left;
+  width:90%;
+  margin:auto;
+  font-weight:bold;
+  margin-top:10px;
+}
+
+#total{
+  font-weight:bold;
+  color:#0f2027;
+  margin-top:10px;
+}
+
+.btn{
+  padding:10px 20px;
+  background:#ff9800;
+  color:white;
+  border:none;
+  border-radius:5px;
+  margin-top:15px;
+}
 </style>
 </head>
 
@@ -22,26 +61,95 @@ input{width:90%;padding:10px;margin:8px;border-radius:5px;border:1px solid #ccc;
 <img src="bud4.jpg">
 <img src="bud5.jpg">
 
+<!-- FORM -->
 <input type="text" id="name" placeholder="Customer Name">
 <input type="text" id="nic" placeholder="NIC / Passport No">
 <input type="text" id="phone" placeholder="Contact Number">
 
+<label class="label">Check-in Date</label>
+<input type="date" id="checkin" onchange="calculateAll()">
+
+<label class="label">Check-out Date</label>
+<input type="date" id="checkout" onchange="calculateAll()">
+
+<input type="number" id="nights" placeholder="How many nights" readonly>
+<input type="number" id="guests" placeholder="How many guests">
+
+<div id="total"></div>
+
 <button class="btn" onclick="sendWhatsApp()">ORDER NOW</button>
 
 <script>
+
+let pricePerNight = 4000; // 💰 Budget price
+
+// 🔥 CALCULATE
+function calculateAll(){
+  let checkin = document.getElementById("checkin").value;
+  let checkout = document.getElementById("checkout").value;
+
+  if(checkin && checkout){
+    let inDate = new Date(checkin);
+    let outDate = new Date(checkout);
+
+    let diffTime = outDate - inDate;
+    let nights = diffTime / (1000 * 60 * 60 * 24);
+
+    if(nights > 0){
+      document.getElementById("nights").value = nights;
+
+      let total = nights * pricePerNight;
+      document.getElementById("total").innerText = "Total Price: Rs. " + total;
+    }else{
+      document.getElementById("nights").value = "";
+      document.getElementById("total").innerText = "";
+    }
+  }
+}
+
+// 📲 WHATSAPP + VALIDATION
 function sendWhatsApp(){
-let name=document.getElementById("name").value;
-let nic=document.getElementById("nic").value;
-let phone=document.getElementById("phone").value;
 
-let message=`Room Booking:
-Room: Budget Room
-Name: ${name}
-NIC: ${nic}
-Contact: ${phone}`;
+let name = document.getElementById("name").value.trim();
+let nic = document.getElementById("nic").value.trim();
+let phone = document.getElementById("phone").value.trim();
+let checkin = document.getElementById("checkin").value;
+let checkout = document.getElementById("checkout").value;
+let nights = document.getElementById("nights").value;
+let guests = document.getElementById("guests").value.trim();
 
-let url="https://wa.me/94703584922?text="+encodeURIComponent(message);
-window.open(url);
+// ❌ VALIDATION
+if(!name || !nic || !phone || !checkin || !checkout || !nights || !guests){
+  alert("⚠️ Please fill all details!");
+  return;
+}
+
+// 📅 FORMAT
+let checkinDate = new Date(checkin).toLocaleDateString();
+let checkoutDate = new Date(checkout).toLocaleDateString();
+
+let total = nights * pricePerNight;
+
+// ✅ MESSAGE
+let message = `Room Booking:
+
+Room: Budget Double Room
+
+Customer Name: ${name}
+NIC/Passport: ${nic}
+Contact Number: ${phone}
+
+Check-in Date: ${checkinDate}
+Check-out Date: ${checkoutDate}
+
+Nights: ${nights}
+Guests: ${guests}
+
+Total Price: Rs. ${total}`;
+
+let url = "https://wa.me/94703584922?text=" + encodeURIComponent(message);
+
+window.open(url, '_blank');
 }
 </script>
 
