@@ -5,7 +5,11 @@
 <title>Family Room</title>
 
 <style>
-body{font-family:Arial;text-align:center;background:#f5f5f5;}
+body{
+  font-family:Arial;
+  text-align:center;
+  background:#f5f5f5;
+}
 
 img{
   width:90%;
@@ -47,41 +51,72 @@ input{
 <input type="text" id="nic" placeholder="NIC / Passport No">
 <input type="text" id="phone" placeholder="Contact Number">
 
-<input type="date" id="checkin">
-<input type="date" id="checkout">
+<!-- DATE -->
+<input type="date" id="checkin" onchange="calculateNights()">
+<input type="date" id="checkout" onchange="calculateNights()">
 
-<input type="number" id="nights" placeholder="How many nights">
+<!-- AUTO NIGHTS -->
+<input type="number" id="nights" placeholder="How many nights" readonly>
+
 <input type="number" id="guests" placeholder="How many guests">
 
 <button class="btn" onclick="sendWhatsApp()">ORDER NOW</button>
 
 <script>
+
+// 🔥 AUTO CALCULATE NIGHTS
+function calculateNights(){
+  let checkin = document.getElementById("checkin").value;
+  let checkout = document.getElementById("checkout").value;
+
+  if(checkin && checkout){
+    let inDate = new Date(checkin);
+    let outDate = new Date(checkout);
+
+    let diffTime = outDate - inDate;
+    let nights = diffTime / (1000 * 60 * 60 * 24);
+
+    if(nights > 0){
+      document.getElementById("nights").value = nights;
+    }else{
+      document.getElementById("nights").value = "";
+    }
+  }
+}
+
+// 📲 WHATSAPP SEND
 function sendWhatsApp(){
 
 let name = document.getElementById("name").value;
 let nic = document.getElementById("nic").value;
 let phone = document.getElementById("phone").value;
+
 let checkin = document.getElementById("checkin").value;
 let checkout = document.getElementById("checkout").value;
 let nights = document.getElementById("nights").value;
 let guests = document.getElementById("guests").value;
 
+// 📅 NICE DATE FORMAT
+let checkinDate = new Date(checkin).toLocaleDateString();
+let checkoutDate = new Date(checkout).toLocaleDateString();
+
 let message = `Room Booking:
+
 Room: Family Room With Mountain View
 
 Customer Name: ${name}
 NIC/Passport: ${nic}
 Contact Number: ${phone}
 
-Check-in Date: ${checkin}
-Check-out Date: ${checkout}
+Check-in Date: ${checkinDate}
+Check-out Date: ${checkoutDate}
 
 Nights: ${nights}
 Guests: ${guests}`;
 
 let url = "https://wa.me/94703584922?text=" + encodeURIComponent(message);
 
-window.open(url);
+window.open(url, '_blank');
 }
 </script>
 
