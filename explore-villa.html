@@ -12,14 +12,12 @@ body{
   text-align:center;
 }
 
-/* HEADER */
 .header{
   background:#0f2027;
   color:white;
   padding:15px;
 }
 
-/* BOX DESIGN */
 .box{
   margin:20px;
   padding:5px;
@@ -33,7 +31,6 @@ body{
   padding:15px;
 }
 
-/* GRID PHOTOS */
 .grid{
   display:grid;
   grid-template-columns:repeat(2, 1fr);
@@ -45,14 +42,12 @@ img{
   border-radius:10px;
 }
 
-/* VIDEOS */
 video{
   width:100%;
   border-radius:10px;
   margin-top:10px;
 }
 
-/* BACK BUTTON */
 .back-btn{
   display:inline-block;
   margin:20px;
@@ -73,42 +68,40 @@ video{
   <p>Relax & Enjoy Nature</p>
 </div>
 
-<!-- 🎥 VIDEO SECTION -->
+<!-- 🎥 VIDEOS -->
 <div class="box">
   <div class="inner">
     <h3>🎥 Videos</h3>
 
-    <!-- VIDEO 1 -->
     <video controls>
-      <source src="video1.mp4" type="VID-20260412-WA0110.mp4">
+      <source src="VID-20260412-WA0110.mp4" type="video/mp4">
+      Your browser does not support video.
     </video>
 
-    <!-- VIDEO 2 -->
     <video controls>
-      <source src="video2.mp4" type="video/mp4">
+      <source src="./video2.mp4" type="video/mp4">
     </video>
 
   </div>
 </div>
 
-<!-- 📸 PHOTO SECTION -->
+<!-- 📸 PHOTOS -->
 <div class="box">
   <div class="inner">
     <h3>📸 Photo Gallery</h3>
 
     <div class="grid">
-      <img src="img1.jpg">
-      <img src="img2.jpg">
-      <img src="img3.jpg">
-      <img src="img4.jpg">
-      <img src="img5.jpg">
-      <img src="img6.jpg">
+      <img src="./img1.jpg">
+      <img src="./img2.jpg">
+      <img src="./img3.jpg">
+      <img src="./img4.jpg">
+      <img src="./img5.jpg">
+      <img src="./img6.jpg">
     </div>
 
   </div>
 </div>
 
-<!-- 🔙 BACK -->
 <a href="index.html" class="back-btn">⬅ Back to Home</a>
 
 </body>
