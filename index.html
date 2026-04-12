@@ -33,12 +33,34 @@ body{
   background-position:center;
 }
 
+/* 🔥 EXPLORE BOX */
+.explore-box{
+  margin:20px;
+  padding:3px;
+  border-radius:15px;
+  background:linear-gradient(45deg, green, orange, yellow, red);
+}
+
+.explore-inner{
+  background:white;
+  border-radius:12px;
+  padding:20px;
+  text-align:center;
+}
+
+.explore-inner a{
+  text-decoration:none;
+  color:black;
+  font-size:18px;
+  font-weight:bold;
+}
+
+/* ROOMS */
 .section{
   padding:20px;
   text-align:center;
 }
 
-/* 🔥 COLORFUL CARD FRAME */
 .card{
   margin:15px;
   border-radius:15px;
@@ -46,7 +68,6 @@ body{
   background:linear-gradient(45deg, green, orange, yellow, red);
 }
 
-/* INNER CARD */
 .card-inner{
   background:white;
   padding:20px;
@@ -77,10 +98,16 @@ body{
 
 <div class="hero"></div>
 
+<!-- 🔥 EXPLORE BOX -->
+<div class="explore-box">
+  <div class="explore-inner">
+    <a href="explore.html">🌿 Explore the Villa</a>
+  </div>
+</div>
+
 <div class="section">
 <h2>Our Rooms</h2>
 
-<!-- FAMILY -->
 <div class="card">
   <div class="card-inner">
     <a href="family.html">
@@ -90,7 +117,6 @@ body{
   </div>
 </div>
 
-<!-- ECONOMY -->
 <div class="card">
   <div class="card-inner">
     <a href="economy.html">
@@ -100,7 +126,6 @@ body{
   </div>
 </div>
 
-<!-- BUDGET -->
 <div class="card">
   <div class="card-inner">
     <a href="budget.html">
