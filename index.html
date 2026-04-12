@@ -35,11 +35,29 @@ body{
   line-height:1.5;
 }
 
+/* 🔥 HERO FRAME (NEW) */
+.hero-frame{
+  margin:20px;
+  padding:5px;
+  border-radius:20px;
+  background:linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet, red);
+  background-size:1600% 1600%;
+  animation:gradientMove 8s ease infinite;
+}
+
 .hero{
   height:300px;
   background:url("IMG-20260412-WA0081.jpg");
   background-size:cover;
   background-position:center;
+  border-radius:15px;
+}
+
+/* 🔥 ANIMATION */
+@keyframes gradientMove {
+  0% { background-position:0% 50%; }
+  50% { background-position:100% 50%; }
+  100% { background-position:0% 50%; }
 }
 
 .explore-box{
@@ -148,7 +166,10 @@ Our carefully designed rooms provide comfort, privacy, and a cozy feeling, makin
   </p>
 </div>
 
-<div class="hero"></div>
+<!-- 🔥 UPDATED HERO WITH FRAME -->
+<div class="hero-frame">
+  <div class="hero"></div>
+</div>
 
 <div class="explore-box">
   <div class="explore-inner">
@@ -185,10 +206,8 @@ Our carefully designed rooms provide comfort, privacy, and a cozy feeling, makin
 
 </div>
 
-<!-- 🔥 CONTACT BUTTON -->
 <div class="contact-btn" onclick="openPopup()">📞 CONTACT NOW</div>
 
-<!-- 🔥 POPUP -->
 <div class="popup" id="popup">
   <div class="popup-content">
     <h3>Send Message</h3>
@@ -203,18 +222,14 @@ Our carefully designed rooms provide comfort, privacy, and a cozy feeling, makin
 </div>
 
 <script>
-
-// OPEN POPUP
 function openPopup(){
   document.getElementById("popup").style.display="block";
 }
 
-// CLOSE POPUP
 function closePopup(){
   document.getElementById("popup").style.display="none";
 }
 
-// SEND WHATSAPP
 function sendWhatsApp(){
   let message = document.getElementById("message").value;
 
@@ -226,7 +241,6 @@ function sendWhatsApp(){
   let url = "https://wa.me/94703584922?text=" + encodeURIComponent(message);
   window.open(url, '_blank');
 }
-
 </script>
 
 </body>
