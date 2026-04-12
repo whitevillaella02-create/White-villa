@@ -2,14 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>White Villa Ella</title>
-
-<!-- WhatsApp Preview -->
-<meta property="og:title" content="White Villa Hotel">
-<meta property="og:description" content="Luxury rooms | Pool | Free WiFi">
-<meta property="og:image" content="https://whitevillaella02-create.github.io/White-villa/villa.jpg">
-<meta property="og:url" content="https://whitevillaella02-create.github.io/White-villa/">
 
 <style>
 body{
@@ -18,7 +11,6 @@ body{
   background:#f5f5f5;
 }
 
-/* Header */
 .header{
   background:#0f2027;
   color:white;
@@ -26,17 +18,14 @@ body{
   text-align:center;
 }
 
-/* Logo */
 .logo{
   width:80px;
   height:80px;
-  object-fit:cover;
   border-radius:50%;
   margin-top:10px;
   border:2px solid white;
 }
 
-/* Hero Section */
 .hero{
   height:300px;
   background:url("IMG-20260412-WA0081.jpg");
@@ -44,22 +33,20 @@ body{
   background-position:center;
 }
 
-/* Sections */
 .section{
   padding:20px;
   text-align:center;
 }
 
-/* Cards */
 .card{
   background:white;
   padding:15px;
   margin:10px;
   border-radius:10px;
   box-shadow:0 0 10px rgba(0,0,0,0.1);
+  cursor:pointer;
 }
 
-/* Button */
 .btn{
   display:inline-block;
   padding:10px 20px;
@@ -67,9 +54,24 @@ body{
   color:white;
   text-decoration:none;
   border-radius:5px;
+  margin-top:10px;
 }
 
-/* Footer */
+input{
+  width:90%;
+  padding:10px;
+  margin:8px;
+  border-radius:5px;
+  border:1px solid #ccc;
+}
+
+#roomImage{
+  width:90%;
+  border-radius:10px;
+  height:220px;
+  object-fit:cover;
+}
+
 .footer{
   background:#0f2027;
   color:white;
@@ -83,53 +85,123 @@ body{
 
 <div class="header">
   <h1>🏡 WHITE VILLA ELLA</h1>
-
-  <!-- LOGO IMAGE -->
   <img class="logo" src="file_0000000008a4720ba5faf52db7af5a06.png">
 </div>
 
 <div class="hero"></div>
 
-<!-- ROOMS SECTION -->
-<div class="section">
+<!-- ROOMS -->
+<div class="section" id="rooms">
   <h2>Our Rooms</h2>
   
-  <div class="card">
-    <h3>Family Room With Mountain Veiw</h3>
+  <div class="card" onclick="openForm('family')">
+    <h3>Family Room With Mountain View</h3>
     <p>Comfortable room with Hot Water & WiFi</p>
     <p>Rs. 7000 / Night</p>
   </div>
 
-  <div class="card">
+  <div class="card" onclick="openForm('economy')">
     <h3>Economy Double Room</h3>
-    <p>Confortable room With Hot Water & WiFi</p>
+    <p>Comfortable room with Hot Water & WiFi</p>
     <p>Rs. 5000 / Night</p>
   </div>
 
-  <div class="card">
+  <div class="card" onclick="openForm('budget')">
     <h3>Budget Double Room</h3>
     <p>Comfortable room with Hot Water & WiFi</p>
     <p>Rs. 4000 / Night</p>
   </div>
-
 </div>
 
-<!-- SERVICES -->
+<!-- FORM PAGE -->
+<div class="section" id="formSection" style="display:none;">
+  <h2 id="roomTitle"></h2>
+
+  <!-- IMAGE SLIDER -->
+  <img id="roomImage" src="">
+
+  <br><br>
+
+  <input type="text" id="name" placeholder="Customer Name">
+  <input type="text" id="nic" placeholder="NIC / Passport No">
+  <input type="text" id="phone" placeholder="Contact Number">
+
+  <br>
+
+  <button class="btn" onclick="sendWhatsApp()">ORDER NOW</button>
+</div>
+
 <div class="section">
   <h2>Services</h2>
-  <p>🌿 Cinnamon vibe  | 🏞️ Garden Tour | 📶 Free WiFi</p>
+  <p>🌿 Cinnamon vibe | 🏞️ Garden Tour | 📶 Free WiFi</p>
 </div>
 
-<!-- CONTACT -->
-<div class="section">
-  <h2>Contact Us</h2>
-  <a class="btn" href="https://wa.me/94703584922">WhatsApp Now</a>
-</div>
-
-<!-- FOOTER -->
 <div class="footer">
   © 2026 White Villa Hotel
 </div>
+
+<script>
+let selectedRoom = "";
+let images = [];
+let index = 0;
+
+function openForm(room){
+  selectedRoom = room;
+
+  document.getElementById("rooms").style.display = "none";
+  document.getElementById("formSection").style.display = "block";
+
+  let title = "";
+
+  // 📸 ROOM IMAGES (ඔයා upload කරන file names දාන්න)
+  if(room === "family"){
+    title = "Family Room With Mountain View";
+    images = ["family1.jpg","family2.jpg","family3.jpg","family4.jpg","family5.jpg"];
+  }
+  else if(room === "economy"){
+    title = "Economy Double Room";
+    images = ["eco1.jpg","eco2.jpg","eco3.jpg","eco4.jpg","eco5.jpg"];
+  }
+  else if(room === "budget"){
+    title = "Budget Double Room";
+    images = ["bud1.jpg","bud2.jpg","bud3.jpg","bud4.jpg","bud5.jpg"];
+  }
+
+  document.getElementById("roomTitle").innerText = title;
+
+  index = 0;
+  document.getElementById("roomImage").src = images[index];
+
+  // 🔄 AUTO SLIDER
+  setInterval(changeImage, 2000);
+}
+
+function changeImage(){
+  if(images.length === 0) return;
+
+  index++;
+  if(index >= images.length){
+    index = 0;
+  }
+  document.getElementById("roomImage").src = images[index];
+}
+
+function sendWhatsApp(){
+  let name = document.getElementById("name").value;
+  let nic = document.getElementById("nic").value;
+  let phone = document.getElementById("phone").value;
+
+  let message = `Room Booking:
+Room: ${selectedRoom}
+Name: ${name}
+NIC/Passport: ${nic}
+Contact: ${phone}`;
+
+  let url = "https://wa.me/94703584922?text=" + encodeURIComponent(message);
+
+  window.open(url, '_blank');
+}
+</script>
 
 </body>
 </html>
