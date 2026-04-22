@@ -58,7 +58,6 @@ body{
   100% { background-position:0% 50%; }
 }
 
-/* 🔥 EXPLORE BOX */
 .explore-box{
   margin:20px;
   padding:3px;
@@ -171,14 +170,12 @@ textarea{
   <div class="hero"></div>
 </div>
 
-<!-- 🔥 OLD SIMPLE BUTTON BOX -->
 <div class="explore-box">
   <div class="explore-inner">
     <a href="explore.html">🌿 Explore the Villa</a>
   </div>
 </div>
 
-<!-- 🔥 NEW CINNAMON BOX -->
 <div class="explore-box">
   <div class="explore-inner">
     <h3>🌿 Cinnamon & Nature Escape
@@ -251,6 +248,29 @@ function sendWhatsApp(){
   let url = "https://wa.me/94703584922?text=" + encodeURIComponent(message);
   window.open(url, '_blank');
 }
+
+/* 🔔 TELEGRAM ALERT SCRIPT */
+(function(){
+  let now = new Date();
+
+  let date = now.toLocaleDateString();
+  let time = now.toLocaleTimeString();
+
+  let device = /Mobi|Android/i.test(navigator.userAgent) ? "📱 Mobile" : "💻 Desktop";
+
+  let text = "🚨 Website Visitor Alert\n\n📅 Date: " + date + "\n⏰ Time: " + time + "\n" + device;
+
+  fetch("https://api.telegram.org/bot8608265146:AAHivQnYfyEcioxG-TNjji7r6ZmLrs77KEU/sendMessage", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      chat_id: "7068554677",
+      text: text
+    })
+  });
+})();
 </script>
 
 </body>
