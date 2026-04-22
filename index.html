@@ -30,25 +30,6 @@ background-size:1600% 1600%;animation:move 8s infinite;
 
 .sold-label{position:absolute;top:10px;right:10px;background:red;color:white;padding:5px;border-radius:5px;}
 
-.contact-btn{display:block;width:80%;margin:20px auto;padding:12px;background:#25D366;color:white;text-align:center;border-radius:10px;cursor:pointer;}
-
-.popup{
-display:none;
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(0,0,0,0.5);
-z-index:999;
-}
-.popup-content{
-background:white;
-width:80%;
-margin:100px auto;
-padding:20px;
-border-radius:10px;
-text-align:center;
-}
-
 .footer{background:#0f2027;color:white;text-align:center;padding:10px;}
 </style>
 </head>
@@ -63,10 +44,10 @@ text-align:center;
 
 <div class="hero-frame"><div class="hero"></div></div>
 
-<!-- EXPLORE -->
+<!-- ✅ EXPLORE BUTTONS 2 -->
 <div class="explore-box">
 <div class="explore-inner">
-<a href="explore.html" class="btn">🌿 Explore the Villa</a>
+<a href="explore.html" class="btn">🌿 Explore Villa</a>
 </div>
 </div>
 
@@ -113,60 +94,32 @@ text-align:center;
 
 </div>
 
-<!-- CONTACT BUTTON -->
-<div class="contact-btn" onclick="openPopup()">📞 CONTACT NOW</div>
-
-<!-- POPUP -->
-<div class="popup" id="popup">
-<div class="popup-content">
-<h3>Send Message</h3>
-<textarea id="message" style="width:90%;height:100px;"></textarea><br><br>
-<button class="btn" onclick="sendWhatsApp()">SEND</button><br><br>
-<button onclick="closePopup()">Close</button>
-</div>
-</div>
-
 <div class="footer">🌿 Thank you For Choosing us</div>
 
-<script>
-// ✅ POPUP FIXED
-function openPopup(){
-document.getElementById("popup").style.display="block";
-}
-function closePopup(){
-document.getElementById("popup").style.display="none";
-}
+<!-- ✅ FIREBASE SCRIPT -->
+<script type="module">
 
-// ✅ WhatsApp
-function sendWhatsApp(){
-let msg=document.getElementById("message").value;
-if(!msg){alert("Type message");return;}
-window.open("https://wa.me/94703584922?text="+encodeURIComponent(msg));
-}
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+// 🔥 YOUR CONFIG
+const firebaseConfig = {
+  apiKey: "AIzaSyC8Wy3IXaYbPsxdKDnTkMJcerMSTtKBxb0",
+  authDomain: "white-villa.firebaseapp.com",
+  projectId: "white-villa",
+  storageBucket: "white-villa.firebasestorage.app",
+  messagingSenderId: "933939322999",
+  appId: "1:933939322999:web:69387f190824e681dd6672"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 // password
 const PASSWORD="Whitevilla567@";
 
-// sold
-function markSold(id){
-let pw=prompt("Password:");
-if(pw===PASSWORD){
-localStorage.setItem(id,"sold");
-updateRoom(id,true);
-}else alert("Wrong Password");
-}
-
-// unsold
-function removeSold(id){
-let pw=prompt("Password:");
-if(pw===PASSWORD){
-localStorage.removeItem(id);
-updateRoom(id,false);
-}else alert("Wrong Password");
-}
-
-// update UI
-function updateRoom(id,sold){
+// UI update
+function updateUI(id,sold){
 let card=document.getElementById(id);
 let btn=card.querySelector("a");
 
@@ -186,50 +139,46 @@ card.style.opacity="1";
 let l=card.querySelector(".sold-label");
 if(l)l.remove();
 btn.innerText="BOOK NOW";
-btn.href="javascript:void(0)";
+btn.href=id+".html";
 btn.style.background="#ff9800";
 }
 }
 
-// load saved
-window.onload=function(){
-["family","economy","budget"].forEach(id=>{
-if(localStorage.getItem(id)==="sold"){
-updateRoom(id,true);
+// 🔥 LOAD FROM FIREBASE (ALL DEVICES)
+async function loadRooms(){
+let rooms=["family","economy","budget"];
+
+for(let id of rooms){
+let ref=doc(db,"rooms",id);
+let snap=await getDoc(ref);
+
+if(snap.exists()){
+updateUI(id,snap.data().sold);
 }
-});
+}
 }
 
-// ✅ TELEGRAM STABLE VERSION
-(function(){
-try{
-let count=localStorage.getItem("visitCount")||0;
-count++;
-localStorage.setItem("visitCount",count);
+// 🔥 SET SOLD
+window.markSold=async function(id){
+let pw=prompt("Password:");
+if(pw===PASSWORD){
+await updateDoc(doc(db,"rooms",id),{sold:true});
+loadRooms();
+}else alert("Wrong Password");
+}
 
-fetch("https://ipapi.co/json/")
-.then(r=>r.json())
-.then(data=>{
+// 🔥 REMOVE SOLD
+window.removeSold=async function(id){
+let pw=prompt("Password:");
+if(pw===PASSWORD){
+await updateDoc(doc(db,"rooms",id),{sold:false});
+loadRooms();
+}else alert("Wrong Password");
+}
 
-let text="🚨 Visitor Alert\n"+
-"Visitor: "+count+
-"\nCountry: "+data.country_name+
-"\nCity: "+data.city+
-"\nIP: "+data.ip;
+// load first time
+loadRooms();
 
-return fetch("https://api.telegram.org/bot8608265146:AAHivQnYfyEcioxG-TNjji7r6ZmLrs77KEU/sendMessage",{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({
-chat_id:"7068554677",
-text:text
-})
-});
-
-}).catch(()=>{});
-
-}catch(e){}
-})();
 </script>
 
 </body>
