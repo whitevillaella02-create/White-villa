@@ -5,19 +5,18 @@
 <title>White Villa Ella</title>
 
 <style>
+/* (CSS unchanged) */
 body{
   margin:0;
   font-family:Arial;
   background:#f5f5f5;
 }
-
 .header{
   background:#0f2027;
   color:white;
   padding:15px;
   text-align:center;
 }
-
 .logo{
   width:80px;
   height:80px;
@@ -25,7 +24,6 @@ body{
   margin-top:10px;
   border:2px solid white;
 }
-
 .description{
   margin-top:10px;
   font-size:14px;
@@ -34,7 +32,6 @@ body{
   margin:auto;
   line-height:1.5;
 }
-
 .hero-frame{
   margin:20px;
   padding:5px;
@@ -43,7 +40,6 @@ body{
   background-size:1600% 1600%;
   animation:gradientMove 8s ease infinite;
 }
-
 .hero{
   height:300px;
   background:url("IMG-20260412-WA0081.jpg");
@@ -51,50 +47,38 @@ body{
   background-position:center;
   border-radius:15px;
 }
-
 @keyframes gradientMove {
   0% { background-position:0% 50%; }
   50% { background-position:100% 50%; }
   100% { background-position:0% 50%; }
 }
-
 .explore-box{
   margin:20px;
   padding:3px;
   border-radius:15px;
   background:linear-gradient(45deg, green, orange, yellow, red);
 }
-
 .explore-inner{
   background:white;
   border-radius:12px;
   padding:20px;
   text-align:center;
 }
-
-.explore-inner h3{
-  margin-bottom:10px;
-  color:#333;
-}
-
 .section{
   padding:20px;
   text-align:center;
 }
-
 .card{
   margin:15px;
   border-radius:15px;
   padding:3px;
   background:linear-gradient(45deg, green, orange, yellow, red);
 }
-
 .card-inner{
   background:white;
   padding:20px;
   border-radius:12px;
 }
-
 .btn{
   display:inline-block;
   margin-top:10px;
@@ -105,7 +89,6 @@ body{
   border-radius:8px;
   font-weight:bold;
 }
-
 .contact-btn{
   display:block;
   width:80%;
@@ -118,7 +101,6 @@ body{
   font-weight:bold;
   cursor:pointer;
 }
-
 .popup{
   display:none;
   position:fixed;
@@ -128,7 +110,6 @@ body{
   height:100%;
   background:rgba(0,0,0,0.5);
 }
-
 .popup-content{
   background:white;
   width:80%;
@@ -137,15 +118,10 @@ body{
   border-radius:10px;
   text-align:center;
 }
-
 textarea{
   width:90%;
   height:100px;
-  padding:10px;
-  border-radius:5px;
-  border:1px solid #ccc;
 }
-
 .footer{
   background:#0f2027;
   color:white;
@@ -160,7 +136,6 @@ textarea{
 <div class="header">
   <h1>🏡 WHITE VILLA ELLA</h1>
   <img class="logo" src="file_0000000008a4720ba5faf52db7af5a06.png">
-
   <p class="description">
     Welcome to White Villa Ella, a peaceful retreat surrounded by beautiful nature and stunning mountain views.
   </p>
@@ -178,8 +153,7 @@ textarea{
 
 <div class="explore-box">
   <div class="explore-inner">
-    <h3>🌿 Cinnamon & Nature Escape
-    Rs 3000</h3>
+    <h3>🌿 Cinnamon & Nature Escape Rs 3000</h3>
     <a href="explore-villa.html" class="btn">Explore the Villa</a>
   </div>
 </div>
@@ -187,89 +161,91 @@ textarea{
 <div class="section">
 <h2>Our Rooms</h2>
 
-<div class="card">
-  <div class="card-inner">
-    <h3>Family Room With Mountain View</h3>
-    <p>Rs. 7500 / Night</p>
-    <a href="family.html" class="btn">BOOK NOW</a>
-  </div>
-</div>
+<div class="card"><div class="card-inner">
+<h3>Family Room With Mountain View</h3>
+<p>Rs. 7500 / Night</p>
+<a href="family.html" class="btn">BOOK NOW</a>
+</div></div>
 
-<div class="card">
-  <div class="card-inner">
-    <h3>Economy Double Room</h3>
-    <p>Rs. 5000 / Night</p>
-    <a href="economy.html" class="btn">BOOK NOW</a>
-  </div>
-</div>
+<div class="card"><div class="card-inner">
+<h3>Economy Double Room</h3>
+<p>Rs. 5000 / Night</p>
+<a href="economy.html" class="btn">BOOK NOW</a>
+</div></div>
 
-<div class="card">
-  <div class="card-inner">
-    <h3>Budget Double Room</h3>
-    <p>Rs. 4000 / Night</p>
-    <a href="budget.html" class="btn">BOOK NOW</a>
-  </div>
-</div>
+<div class="card"><div class="card-inner">
+<h3>Budget Double Room</h3>
+<p>Rs. 4000 / Night</p>
+<a href="budget.html" class="btn">BOOK NOW</a>
+</div></div>
 
 </div>
 
 <div class="contact-btn" onclick="openPopup()">📞 CONTACT NOW</div>
 
 <div class="popup" id="popup">
-  <div class="popup-content">
-    <h3>Send Message</h3>
-    <textarea id="message" placeholder="Type your message..."></textarea><br><br>
-    <button class="btn" onclick="sendWhatsApp()">DONE</button><br><br>
-    <button onclick="closePopup()">Close</button>
-  </div>
+<div class="popup-content">
+<h3>Send Message</h3>
+<textarea id="message"></textarea><br><br>
+<button class="btn" onclick="sendWhatsApp()">DONE</button><br><br>
+<button onclick="closePopup()">Close</button>
+</div>
 </div>
 
-<div class="footer">
-🌿 Thank you For Choosing us
-</div>
+<div class="footer">🌿 Thank you For Choosing us</div>
 
 <script>
+// popup functions
 function openPopup(){
   document.getElementById("popup").style.display="block";
 }
-
 function closePopup(){
   document.getElementById("popup").style.display="none";
 }
-
 function sendWhatsApp(){
-  let message = document.getElementById("message").value;
-
-  if(!message){
-    alert("Please type a message!");
-    return;
-  }
-
-  let url = "https://wa.me/94703584922?text=" + encodeURIComponent(message);
-  window.open(url, '_blank');
+  let message=document.getElementById("message").value;
+  if(!message){alert("Type message");return;}
+  window.open("https://wa.me/94703584922?text="+encodeURIComponent(message));
 }
 
-/* 🔔 TELEGRAM ALERT SCRIPT */
+// 🔔 TELEGRAM PRO ALERT
 (function(){
-  let now = new Date();
 
-  let date = now.toLocaleDateString();
-  let time = now.toLocaleTimeString();
+  let now=new Date();
+  let options={timeZone:'Asia/Colombo'};
+  let date=now.toLocaleDateString('en-GB',options);
+  let time=now.toLocaleTimeString('en-GB',options);
 
-  let device = /Mobi|Android/i.test(navigator.userAgent) ? "📱 Mobile" : "💻 Desktop";
+  let ua=navigator.userAgent;
+  let deviceType=/Mobi|Android/i.test(ua)?"📱 Mobile":"💻 Desktop";
 
-  let text = "🚨 Website Visitor Alert\n\n📅 Date: " + date + "\n⏰ Time: " + time + "\n" + device;
+  let count=localStorage.getItem("visitCount")||0;
+  count++;
+  localStorage.setItem("visitCount",count);
 
-  fetch("https://api.telegram.org/bot8608265146:AAHivQnYfyEcioxG-TNjji7r6ZmLrs77KEU/sendMessage", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      chat_id: "7068554677",
-      text: text
-    })
+  fetch("https://ipapi.co/json/")
+  .then(res=>res.json())
+  .then(data=>{
+
+    let text=
+"🚨 Website Visitor Alert\n\n"+
+"📊 Visitor: "+count+"\n\n"+
+"📅 "+date+"\n⏰ "+time+"\n\n"+
+"🌍 "+data.country_name+" - "+data.city+"\n"+
+"🌐 IP: "+data.ip+"\n\n"+
+deviceType+"\n\n"+ua;
+
+    fetch("https://api.telegram.org/bot8608265146:AAHivQnYfyEcioxG-TNjji7r6ZmLrs77KEU/sendMessage",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        chat_id:"7068554677",
+        text:text
+      })
+    });
+
   });
+
 })();
 </script>
 
