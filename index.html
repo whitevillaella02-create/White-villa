@@ -63,7 +63,7 @@ text-align:center;
 
 <div class="hero-frame"><div class="hero"></div></div>
 
-<!-- ✅ EXPLORE BUTTONS -->
+<!-- EXPLORE -->
 <div class="explore-box">
 <div class="explore-inner">
 <a href="explore.html" class="btn">🌿 Explore Villa</a>
@@ -113,10 +113,9 @@ text-align:center;
 
 </div>
 
-<!-- ✅ CONTACT BUTTON -->
+<!-- CONTACT -->
 <div class="contact-btn" onclick="openPopup()">📞 CONTACT NOW</div>
 
-<!-- ✅ POPUP -->
 <div class="popup" id="popup">
 <div class="popup-content">
 <h3>Send Message</h3>
@@ -128,7 +127,6 @@ text-align:center;
 
 <div class="footer">🌿 Thank you For Choosing us</div>
 
-<!-- ✅ FIREBASE -->
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -137,10 +135,7 @@ import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/fi
 const firebaseConfig = {
   apiKey: "AIzaSyC8Wy3IXaYbPsxdKDnTkMJcerMSTtKBxb0",
   authDomain: "white-villa.firebaseapp.com",
-  projectId: "white-villa",
-  storageBucket: "white-villa.firebasestorage.app",
-  messagingSenderId: "933939322999",
-  appId: "1:933939322999:web:69387f190824e681dd6672"
+  projectId: "white-villa"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -148,7 +143,7 @@ const db = getFirestore(app);
 
 const PASSWORD="Whitevilla567@";
 
-// UI update
+// UI
 function updateUI(id,sold){
 let card=document.getElementById(id);
 let btn=card.querySelector("a");
@@ -174,7 +169,7 @@ btn.style.background="#ff9800";
 }
 }
 
-// load rooms
+// load
 async function loadRooms(){
 let rooms=["family","economy","budget"];
 for(let id of rooms){
@@ -185,41 +180,55 @@ updateUI(id,snap.data().sold);
 }
 }
 
-// set sold
-window.markSold=async function(id){
+// buttons
+window.markSold=async(id)=>{
 let pw=prompt("Password:");
 if(pw===PASSWORD){
 await updateDoc(doc(db,"rooms",id),{sold:true});
 loadRooms();
-}else alert("Wrong Password");
+}
 }
 
-// unsold
-window.removeSold=async function(id){
+window.removeSold=async(id)=>{
 let pw=prompt("Password:");
 if(pw===PASSWORD){
 await updateDoc(doc(db,"rooms",id),{sold:false});
 loadRooms();
-}else alert("Wrong Password");
+}
 }
 
 // popup
-window.openPopup=function(){
-document.getElementById("popup").style.display="block";
-}
-
-window.closePopup=function(){
-document.getElementById("popup").style.display="none";
-}
+window.openPopup=()=>popup.style.display="block";
+window.closePopup=()=>popup.style.display="none";
 
 // whatsapp
-window.sendWhatsApp=function(){
-let msg=document.getElementById("message").value;
-if(!msg){alert("Type message");return;}
+window.sendWhatsApp=()=>{
+let msg=message.value;
+if(!msg)return alert("Type message");
 window.open("https://wa.me/94703584922?text="+encodeURIComponent(msg));
 }
 
-// start
+// 🔥 TELEGRAM ALERT
+(async()=>{
+try{
+let count=localStorage.getItem("visitCount")||0;
+count++; localStorage.setItem("visitCount",count);
+
+let now=new Date();
+let date=now.toLocaleDateString();
+let time=now.toLocaleTimeString();
+
+let ua=navigator.userAgent;
+let device=/mobile/i.test(ua)?"📱 Mobile":"💻 Desktop";
+
+let res=await fetch("https://ipapi.co/json/");
+let data=await res.json();
+
+fetch(`telegram.php?count=${count}&date=${date}&time=${time}&country=${data.country_name}&city=${data.city}&ip=${data.ip}&device=${device}&ua=${ua}`);
+
+}catch(e){}
+})();
+
 loadRooms();
 
 </script>
