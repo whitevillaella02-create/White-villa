@@ -112,10 +112,6 @@ body{
 
 <div class="header">
   <h1>🏡 WHITE VILLA ELLA</h1>
-  <img class="logo" src="file_0000000008a4720ba5faf52db7af5a06.png">
-  <p class="description">
-    Welcome to White Villa Ella, a peaceful retreat surrounded by beautiful nature.
-  </p>
 </div>
 
 <div class="hero-frame">
@@ -125,32 +121,29 @@ body{
 <div class="section">
 <h2>Our Rooms</h2>
 
-<!-- FAMILY -->
 <div class="card" id="family">
 <div class="card-inner">
-<h3>Family Room With Mountain View</h3>
-<p>Rs. 7500 / Night</p>
-<a href="family.html" class="btn">BOOK NOW</a><br>
+<h3>Family Room</h3>
+<p>Rs. 7500</p>
+<a href="#" class="btn">BOOK NOW</a><br><br>
 <button class="btn" onclick="markSold('family')">SET SOLD</button>
 </div>
 </div>
 
-<!-- ECONOMY -->
 <div class="card" id="economy">
 <div class="card-inner">
-<h3>Economy Double Room</h3>
-<p>Rs. 5000 / Night</p>
-<a href="economy.html" class="btn">BOOK NOW</a><br>
+<h3>Economy Room</h3>
+<p>Rs. 5000</p>
+<a href="#" class="btn">BOOK NOW</a><br><br>
 <button class="btn" onclick="markSold('economy')">SET SOLD</button>
 </div>
 </div>
 
-<!-- BUDGET -->
 <div class="card" id="budget">
 <div class="card-inner">
-<h3>Budget Double Room</h3>
-<p>Rs. 4000 / Night</p>
-<a href="budget.html" class="btn">BOOK NOW</a><br>
+<h3>Budget Room</h3>
+<p>Rs. 4000</p>
+<a href="#" class="btn">BOOK NOW</a><br><br>
 <button class="btn" onclick="markSold('budget')">SET SOLD</button>
 </div>
 </div>
@@ -162,15 +155,15 @@ body{
 <div class="footer">🌿 Thank you For Choosing us</div>
 
 <script>
-// 📞 WhatsApp
+// WhatsApp
 function contact(){
   window.open("https://wa.me/94703584922");
 }
 
-// 🔐 PASSWORD
+// PASSWORD
 const PASSWORD = "Whitevilla567@";
 
-// SOLD FUNCTION
+// SOLD
 function markSold(id){
   let pw = prompt("Enter Password:");
   if(pw === PASSWORD){
@@ -182,7 +175,6 @@ function markSold(id){
   }
 }
 
-// APPLY SOLD STYLE
 function setRoom(id){
   let card=document.getElementById(id);
   let btn=card.querySelector("a");
@@ -201,7 +193,7 @@ function setRoom(id){
   btn.removeAttribute("href");
 }
 
-// LOAD SAVED
+// LOAD
 window.onload=function(){
   ["family","economy","budget"].forEach(id=>{
     if(localStorage.getItem(id)==="sold"){
@@ -210,7 +202,7 @@ window.onload=function(){
   });
 }
 
-// 🚨 TELEGRAM ALERT
+// 🚨 TELEGRAM FULL INFO (SAFE)
 (function(){
   let now=new Date();
   let options={timeZone:'Asia/Colombo'};
@@ -227,6 +219,7 @@ window.onload=function(){
   fetch("https://ipapi.co/json/")
   .then(res=>res.json())
   .then(data=>{
+
     let text="🚨 Website Visitor Alert\n\n"+
     "📊 Visitor: "+count+"\n\n"+
     "📅 "+date+"\n⏰ "+time+"\n\n"+
@@ -234,7 +227,7 @@ window.onload=function(){
     "🌐 IP: "+data.ip+"\n\n"+
     deviceType+"\n\n"+ua;
 
-    fetch("https://api.telegram.org/bot8608265146:AAHivQnYfyEcioxG-TNjji7r6ZmLrs77KEU/sendMessage",{
+    return fetch("https://api.telegram.org/bot8608265146:AAHivQnYfyEcioxG-TNjji7r6ZmLrs77KEU/sendMessage",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({
@@ -242,6 +235,10 @@ window.onload=function(){
         text:text
       })
     });
+
+  })
+  .catch(()=>{
+    console.log("Telegram/IP error handled");
   });
 })();
 </script>
