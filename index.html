@@ -5,6 +5,7 @@
 <title>White Villa Ella</title>
 
 <style>
+/* (ALL YOUR CSS SAME — NO CHANGE) */
 body{
   margin:0;
   font-family:Arial;
@@ -88,15 +89,11 @@ body{
   border-radius:8px;
   font-weight:bold;
 }
-
-/* ADMIN SMALL BUTTON */
 .admin-btn{
   font-size:12px;
   padding:5px 10px;
   background:black;
 }
-
-/* SOLD OUT */
 .sold-out {
   opacity: 0.5;
   position: relative;
@@ -116,8 +113,6 @@ body{
   background: grey !important;
   pointer-events: none;
 }
-
-/* TOP MESSAGE */
 .toast{
   position:fixed;
   top:20px;
@@ -131,7 +126,6 @@ body{
   z-index:999;
   font-weight:bold;
 }
-
 .contact-btn{
   display:block;
   width:80%;
@@ -206,7 +200,6 @@ textarea{
 <div class="section">
 <h2>Our Rooms</h2>
 
-<!-- FAMILY -->
 <div class="card" id="familyRoom">
 <div class="card-inner">
 <h3>Family Room With Mountain View</h3>
@@ -215,7 +208,6 @@ textarea{
 <button class="btn admin-btn" onclick="secureToggle('family')">ADMIN</button>
 </div></div>
 
-<!-- ECONOMY -->
 <div class="card" id="economyRoom">
 <div class="card-inner">
 <h3>Economy Double Room</h3>
@@ -224,7 +216,6 @@ textarea{
 <button class="btn admin-btn" onclick="secureToggle('economy')">ADMIN</button>
 </div></div>
 
-<!-- BUDGET -->
 <div class="card" id="budgetRoom">
 <div class="card-inner">
 <h3>Budget Double Room</h3>
@@ -316,46 +307,10 @@ function showToast(msg){
   setTimeout(()=>{t.style.display="none";},3000);
 }
 
-// 🔔 TELEGRAM PRO ALERT
-(function(){
-
-  let now=new Date();
-  let options={timeZone:'Asia/Colombo'};
-  let date=now.toLocaleDateString('en-GB',options);
-  let time=now.toLocaleTimeString('en-GB',options);
-
-  let ua=navigator.userAgent;
-  let deviceType=/Mobi|Android/i.test(ua)?"📱 Mobile":"💻 Desktop";
-
-  let count=localStorage.getItem("visitCount")||0;
-  count++;
-  localStorage.setItem("visitCount",count);
-
-  fetch("https://ipapi.co/json/")
-  .then(res=>res.json())
-  .then(data=>{
-
-    let text=
-"🚨 Website Visitor Alert\n\n"+
-"📊 Visitor: "+count+"\n\n"+
-"📅 "+date+"\n⏰ "+time+"\n\n"+
-"🌍 "+data.country_name+" - "+data.city+"\n"+
-"🌐 IP: "+data.ip+"\n\n"+
-deviceType+"\n\n"+ua;
-
-    fetch("https://api.telegram.org/bot8608265146:AAHivQnYfyEcioxG-TNjji7r6ZmLrs77KEU/sendMessage",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        chat_id:"7068554677",
-        text:text
-      })
-    });
-
-  });
-
-})();
 </script>
+
+<!-- 🔥 TELEGRAM FILE CONNECT -->
+<script src="telegram.js"></script>
 
 </body>
 </html>
