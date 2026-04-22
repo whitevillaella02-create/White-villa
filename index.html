@@ -51,6 +51,18 @@ body{
   50% { background-position:100% 50%; }
   100% { background-position:0% 50%; }
 }
+.explore-box{
+  margin:20px;
+  padding:3px;
+  border-radius:15px;
+  background:linear-gradient(45deg, green, orange, yellow, red);
+}
+.explore-inner{
+  background:white;
+  border-radius:12px;
+  padding:20px;
+  text-align:center;
+}
 .section{
   padding:20px;
   text-align:center;
@@ -77,7 +89,7 @@ body{
   font-weight:bold;
 }
 
-/* SMALL ADMIN BUTTON */
+/* ADMIN SMALL BUTTON */
 .admin-btn{
   font-size:12px;
   padding:5px 10px;
@@ -105,7 +117,7 @@ body{
   pointer-events: none;
 }
 
-/* SUCCESS MESSAGE */
+/* TOP MESSAGE */
 .toast{
   position:fixed;
   top:20px;
@@ -176,6 +188,19 @@ textarea{
   <div class="hero"></div>
 </div>
 
+<div class="explore-box">
+  <div class="explore-inner">
+    <a href="explore.html">🌿 Explore the Villa</a>
+  </div>
+</div>
+
+<div class="explore-box">
+  <div class="explore-inner">
+    <h3>🌿 Cinnamon & Nature Escape Rs 3000</h3>
+    <a href="explore-villa.html" class="btn">Explore the Villa</a>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <div class="section">
@@ -188,8 +213,7 @@ textarea{
 <p>Rs. 7500 / Night</p>
 <a href="family.html" class="btn" id="familyBtn">BOOK NOW</a><br><br>
 <button class="btn admin-btn" onclick="secureToggle('family')">ADMIN</button>
-</div>
-</div>
+</div></div>
 
 <!-- ECONOMY -->
 <div class="card" id="economyRoom">
@@ -198,8 +222,7 @@ textarea{
 <p>Rs. 5000 / Night</p>
 <a href="economy.html" class="btn" id="economyBtn">BOOK NOW</a><br><br>
 <button class="btn admin-btn" onclick="secureToggle('economy')">ADMIN</button>
-</div>
-</div>
+</div></div>
 
 <!-- BUDGET -->
 <div class="card" id="budgetRoom">
@@ -208,8 +231,7 @@ textarea{
 <p>Rs. 4000 / Night</p>
 <a href="budget.html" class="btn" id="budgetBtn">BOOK NOW</a><br><br>
 <button class="btn admin-btn" onclick="secureToggle('budget')">ADMIN</button>
-</div>
-</div>
+</div></div>
 
 </div>
 
@@ -237,7 +259,7 @@ function sendWhatsApp(){
   window.open("https://wa.me/94703584922?text="+encodeURIComponent(message));
 }
 
-// 🔐 PASSWORD ADMIN
+// ADMIN PASSWORD
 function secureToggle(room){
   let pw=prompt("Enter Admin Password");
   if(pw==="Whitevilla567@"){
@@ -286,7 +308,7 @@ function loadRoom(room){
   }
 }
 
-// SUCCESS MESSAGE
+// MESSAGE
 function showToast(msg){
   let t=document.getElementById("toast");
   t.innerText=msg;
