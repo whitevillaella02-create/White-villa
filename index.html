@@ -5,7 +5,6 @@
 <title>White Villa Ella</title>
 
 <style>
-/* (CSS unchanged) */
 body{
   margin:0;
   font-family:Arial;
@@ -144,8 +143,6 @@ textarea{
 
 <body>
 
-<!-- 🔴 ඔයාගේ ORIGINAL CONTENT එක (UNCHANGED) -->
-
 <div class="header">
   <h1>🏡 WHITE VILLA ELLA</h1>
   <img class="logo" src="file_0000000008a4720ba5faf52db7af5a06.png">
@@ -208,20 +205,16 @@ textarea{
 <div class="footer">🌿 Thank you For Choosing us</div>
 
 <script>
-// popup functions
-function openPopup(){
-  document.getElementById("popup").style.display="block";
-}
-function closePopup(){
-  document.getElementById("popup").style.display="none";
-}
+// popup
+function openPopup(){document.getElementById("popup").style.display="block";}
+function closePopup(){document.getElementById("popup").style.display="none";}
 function sendWhatsApp(){
   let message=document.getElementById("message").value;
   if(!message){alert("Type message");return;}
   window.open("https://wa.me/94703584922?text="+encodeURIComponent(message));
 }
 
-// 🔔 TELEGRAM PRO ALERT (UNCHANGED)
+// TELEGRAM ALERT (UNCHANGED)
 (function(){
   let now=new Date();
   let options={timeZone:'Asia/Colombo'};
@@ -256,13 +249,16 @@ function sendWhatsApp(){
   });
 })();
 
-// 🔥 NEW SOLD OUT SYSTEM
-fetch("rooms.json")
+// 🔥 SOLD OUT SYSTEM FIXED
+fetch("./rooms.json")   // <-- FIXED PATH
 .then(res=>res.json())
 .then(data=>{
   setRoom("family", data.family);
   setRoom("economy", data.economy);
   setRoom("budget", data.budget);
+})
+.catch(()=>{
+  console.log("rooms.json load error");
 });
 
 function setRoom(id,status){
