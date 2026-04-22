@@ -32,8 +32,22 @@ background-size:1600% 1600%;animation:move 8s infinite;
 
 .contact-btn{display:block;width:80%;margin:20px auto;padding:12px;background:#25D366;color:white;text-align:center;border-radius:10px;cursor:pointer;}
 
-.popup{display:none;position:fixed;width:100%;height:100%;background:rgba(0,0,0,0.5);}
-.popup-content{background:white;width:80%;margin:100px auto;padding:20px;border-radius:10px;text-align:center;}
+.popup{
+display:none;
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,0.5);
+z-index:999;
+}
+.popup-content{
+background:white;
+width:80%;
+margin:100px auto;
+padding:20px;
+border-radius:10px;
+text-align:center;
+}
 
 .footer{background:#0f2027;color:white;text-align:center;padding:10px;}
 </style>
@@ -67,7 +81,6 @@ background-size:1600% 1600%;animation:move 8s infinite;
 <div class="section">
 <h2>Our Rooms</h2>
 
-<!-- FAMILY -->
 <div class="card" id="family">
 <div class="card-inner">
 <h3>Family Room</h3>
@@ -78,7 +91,6 @@ background-size:1600% 1600%;animation:move 8s infinite;
 </div>
 </div>
 
-<!-- ECONOMY -->
 <div class="card" id="economy">
 <div class="card-inner">
 <h3>Economy Room</h3>
@@ -89,7 +101,6 @@ background-size:1600% 1600%;animation:move 8s infinite;
 </div>
 </div>
 
-<!-- BUDGET -->
 <div class="card" id="budget">
 <div class="card-inner">
 <h3>Budget Room</h3>
@@ -102,7 +113,7 @@ background-size:1600% 1600%;animation:move 8s infinite;
 
 </div>
 
-<!-- CONTACT -->
+<!-- CONTACT BUTTON -->
 <div class="contact-btn" onclick="openPopup()">📞 CONTACT NOW</div>
 
 <!-- POPUP -->
@@ -118,12 +129,18 @@ background-size:1600% 1600%;animation:move 8s infinite;
 <div class="footer">🌿 Thank you For Choosing us</div>
 
 <script>
-// popup
-function openPopup(){document.getElementById("popup").style.display="block";}
-function closePopup(){document.getElementById("popup").style.display="none";}
+// ✅ POPUP FIXED
+function openPopup(){
+document.getElementById("popup").style.display="block";
+}
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+// ✅ WhatsApp
 function sendWhatsApp(){
 let msg=document.getElementById("message").value;
-if(!msg)return alert("Type message");
+if(!msg){alert("Type message");return;}
 window.open("https://wa.me/94703584922?text="+encodeURIComponent(msg));
 }
 
@@ -169,7 +186,7 @@ card.style.opacity="1";
 let l=card.querySelector(".sold-label");
 if(l)l.remove();
 btn.innerText="BOOK NOW";
-btn.href="#";
+btn.href="javascript:void(0)";
 btn.style.background="#ff9800";
 }
 }
@@ -183,8 +200,9 @@ updateRoom(id,true);
 });
 }
 
-// telegram alert
+// ✅ TELEGRAM STABLE VERSION
 (function(){
+try{
 let count=localStorage.getItem("visitCount")||0;
 count++;
 localStorage.setItem("visitCount",count);
@@ -192,18 +210,25 @@ localStorage.setItem("visitCount",count);
 fetch("https://ipapi.co/json/")
 .then(r=>r.json())
 .then(data=>{
-let text="Visitor: "+count+
+
+let text="🚨 Visitor Alert\n"+
+"Visitor: "+count+
 "\nCountry: "+data.country_name+
 "\nCity: "+data.city+
 "\nIP: "+data.ip;
 
-fetch("https://api.telegram.org/bot8290182810:AAH6EypIn5dU9jWSkq0xaTkI3zi6wUnQOgw",{
+return fetch("https://api.telegram.org/bot8608265146:AAHivQnYfyEcioxG-TNjji7r6ZmLrs77KEU/sendMessage",{
 method:"POST",
 headers:{"Content-Type":"application/json"},
-body:JSON.stringify({chat_id:"7068554677",text:text})
-});
+body:JSON.stringify({
+chat_id:"7068554677",
+text:text
 })
-.catch(()=>{});
+});
+
+}).catch(()=>{});
+
+}catch(e){}
 })();
 </script>
 
