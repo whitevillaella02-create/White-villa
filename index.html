@@ -240,8 +240,7 @@ textarea{
 <div class="footer">🌿 Thank you For Choosing us</div>
 
 <script>
-
-// popup
+// (ALL YOUR JS SAME — NO CHANGE)
 function openPopup(){document.getElementById("popup").style.display="block";}
 function closePopup(){document.getElementById("popup").style.display="none";}
 function sendWhatsApp(){
@@ -249,8 +248,6 @@ function sendWhatsApp(){
   if(!message){alert("Type message");return;}
   window.open("https://wa.me/94703584922?text="+encodeURIComponent(message));
 }
-
-// ADMIN PASSWORD
 function secureToggle(room){
   let pw=prompt("Enter Admin Password");
   if(pw==="Whitevilla567@"){
@@ -260,14 +257,11 @@ function secureToggle(room){
     alert("Wrong Password ❌");
   }
 }
-
-// ROOM SYSTEM
 window.onload=function(){
   loadRoom("family");
   loadRoom("economy");
   loadRoom("budget");
 };
-
 function toggleRoom(room){
   let status=localStorage.getItem(room);
   if(status==="sold"){
@@ -277,7 +271,6 @@ function toggleRoom(room){
   }
   loadRoom(room);
 }
-
 function loadRoom(room){
   let status=localStorage.getItem(room);
   let card=document.getElementById(room+"Room");
@@ -298,18 +291,15 @@ function loadRoom(room){
     if(room==="budget") btn.href="budget.html";
   }
 }
-
-// MESSAGE
 function showToast(msg){
   let t=document.getElementById("toast");
   t.innerText=msg;
   t.style.display="block";
   setTimeout(()=>{t.style.display="none";},3000);
 }
-
 </script>
 
-<!-- 🔥 TELEGRAM FILE CONNECT -->
+<!-- 🔥 TELEGRAM FILE -->
 <script src="telegram.js"></script>
 
 </body>
