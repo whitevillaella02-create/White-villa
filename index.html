@@ -50,6 +50,22 @@ body{
   50% { background-position:100% 50%; }
   100% { background-position:0% 50%; }
 }
+
+/* explore boxes */
+.explore-box{
+  margin:20px;
+  padding:3px;
+  border-radius:15px;
+  background:linear-gradient(45deg, green, orange, yellow, red);
+}
+.explore-inner{
+  background:white;
+  border-radius:12px;
+  padding:20px;
+  text-align:center;
+}
+
+/* rooms */
 .section{
   padding:20px;
   text-align:center;
@@ -66,6 +82,7 @@ body{
   padding:20px;
   border-radius:12px;
 }
+
 .btn{
   display:inline-block;
   margin-top:10px;
@@ -77,6 +94,15 @@ body{
   font-weight:bold;
   cursor:pointer;
 }
+
+/* admin small button */
+.admin-btn{
+  padding:5px 10px;
+  font-size:12px;
+  background:#222;
+}
+
+/* sold */
 .sold-label{
   position:absolute;
   top:10px;
@@ -87,6 +113,8 @@ body{
   border-radius:5px;
   font-weight:bold;
 }
+
+/* contact */
 .contact-btn{
   display:block;
   width:80%;
@@ -99,6 +127,30 @@ body{
   font-weight:bold;
   cursor:pointer;
 }
+
+/* popup */
+.popup{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+}
+.popup-content{
+  background:white;
+  width:80%;
+  margin:100px auto;
+  padding:20px;
+  border-radius:10px;
+  text-align:center;
+}
+textarea{
+  width:90%;
+  height:100px;
+}
+
 .footer{
   background:#0f2027;
   color:white;
@@ -110,68 +162,103 @@ body{
 
 <body>
 
+<!-- HEADER -->
 <div class="header">
   <h1>🏡 WHITE VILLA ELLA</h1>
+  <img class="logo" src="file_0000000008a4720ba5faf52db7af5a06.png">
+  <p class="description">
+    Welcome to White Villa Ella, a peaceful retreat surrounded by nature.
+  </p>
 </div>
 
+<!-- HERO -->
 <div class="hero-frame">
   <div class="hero"></div>
 </div>
 
+<!-- EXPLORE -->
+<div class="explore-box">
+  <div class="explore-inner">
+    <a href="explore.html" class="btn">🌿 Explore the Villa</a>
+  </div>
+</div>
+
+<div class="explore-box">
+  <div class="explore-inner">
+    <h3>🌿 Cinnamon & Nature Escape Rs 3000</h3>
+    <a href="explore-villa.html" class="btn">Explore Package</a>
+  </div>
+</div>
+
+<!-- ROOMS -->
 <div class="section">
 <h2>Our Rooms</h2>
 
 <div class="card" id="family">
 <div class="card-inner">
-<h3>Family Room</h3>
-<p>Rs. 7500</p>
-<a href="#" class="btn">BOOK NOW</a><br><br>
-<button class="btn" onclick="markSold('family')">SET SOLD</button>
+<h3>Family Room With Mountain View</h3>
+<p>Rs. 7500 / Night</p>
+<a href="family.html" class="btn">BOOK NOW</a><br><br>
+<button class="btn admin-btn" onclick="markSold('family')">SET SOLD</button>
 </div>
 </div>
 
 <div class="card" id="economy">
 <div class="card-inner">
-<h3>Economy Room</h3>
-<p>Rs. 5000</p>
-<a href="#" class="btn">BOOK NOW</a><br><br>
-<button class="btn" onclick="markSold('economy')">SET SOLD</button>
+<h3>Economy Double Room</h3>
+<p>Rs. 5000 / Night</p>
+<a href="economy.html" class="btn">BOOK NOW</a><br><br>
+<button class="btn admin-btn" onclick="markSold('economy')">SET SOLD</button>
 </div>
 </div>
 
 <div class="card" id="budget">
 <div class="card-inner">
-<h3>Budget Room</h3>
-<p>Rs. 4000</p>
-<a href="#" class="btn">BOOK NOW</a><br><br>
-<button class="btn" onclick="markSold('budget')">SET SOLD</button>
+<h3>Budget Double Room</h3>
+<p>Rs. 4000 / Night</p>
+<a href="budget.html" class="btn">BOOK NOW</a><br><br>
+<button class="btn admin-btn" onclick="markSold('budget')">SET SOLD</button>
 </div>
 </div>
 
 </div>
 
-<div class="contact-btn" onclick="contact()">📞 CONTACT NOW</div>
+<!-- CONTACT -->
+<div class="contact-btn" onclick="openPopup()">📞 CONTACT NOW</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+<div class="popup-content">
+<h3>Send Message</h3>
+<textarea id="message"></textarea><br><br>
+<button class="btn" onclick="sendWhatsApp()">DONE</button><br><br>
+<button onclick="closePopup()">Close</button>
+</div>
+</div>
 
 <div class="footer">🌿 Thank you For Choosing us</div>
 
 <script>
-// WhatsApp
-function contact(){
-  window.open("https://wa.me/94703584922");
+// popup
+function openPopup(){document.getElementById("popup").style.display="block";}
+function closePopup(){document.getElementById("popup").style.display="none";}
+function sendWhatsApp(){
+  let message=document.getElementById("message").value;
+  if(!message){alert("Type message");return;}
+  window.open("https://wa.me/94703584922?text="+encodeURIComponent(message));
 }
 
-// PASSWORD
-const PASSWORD = "Whitevilla567@";
+// password
+const PASSWORD="Whitevilla567@";
 
-// SOLD
+// sold
 function markSold(id){
-  let pw = prompt("Enter Password:");
-  if(pw === PASSWORD){
+  let pw=prompt("Enter Password:");
+  if(pw===PASSWORD){
     setRoom(id);
     localStorage.setItem(id,"sold");
-    alert("Room SOLD OUT!");
   }else{
-    alert("Wrong Password!");
+    alert("Wrong Password");
   }
 }
 
@@ -193,7 +280,7 @@ function setRoom(id){
   btn.removeAttribute("href");
 }
 
-// LOAD
+// load
 window.onload=function(){
   ["family","economy","budget"].forEach(id=>{
     if(localStorage.getItem(id)==="sold"){
@@ -202,7 +289,7 @@ window.onload=function(){
   });
 }
 
-// 🚨 TELEGRAM FULL INFO (SAFE)
+// telegram
 (function(){
   let now=new Date();
   let options={timeZone:'Asia/Colombo'};
@@ -219,7 +306,6 @@ window.onload=function(){
   fetch("https://ipapi.co/json/")
   .then(res=>res.json())
   .then(data=>{
-
     let text="🚨 Website Visitor Alert\n\n"+
     "📊 Visitor: "+count+"\n\n"+
     "📅 "+date+"\n⏰ "+time+"\n\n"+
@@ -227,7 +313,7 @@ window.onload=function(){
     "🌐 IP: "+data.ip+"\n\n"+
     deviceType+"\n\n"+ua;
 
-    return fetch("https://api.telegram.org/bot8608265146:AAHivQnYfyEcioxG-TNjji7r6ZmLrs77KEU/sendMessage",{
+    fetch("https://api.telegram.org/bot8608265146:AAHivQnYfyEcioxG-TNjji7r6ZmLrs77KEU/sendMessage",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({
@@ -235,11 +321,7 @@ window.onload=function(){
         text:text
       })
     });
-
-  })
-  .catch(()=>{
-    console.log("Telegram/IP error handled");
-  });
+  }).catch(()=>{});
 })();
 </script>
 
