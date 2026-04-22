@@ -23,6 +23,34 @@ body{
   margin-top:10px;
   border:2px solid white;
 }
+.description{
+  margin-top:10px;
+  font-size:14px;
+  color:#ddd;
+  max-width:90%;
+  margin:auto;
+  line-height:1.5;
+}
+.hero-frame{
+  margin:20px;
+  padding:5px;
+  border-radius:20px;
+  background:linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet, red);
+  background-size:1600% 1600%;
+  animation:gradientMove 8s ease infinite;
+}
+.hero{
+  height:300px;
+  background:url("IMG-20260412-WA0081.jpg");
+  background-size:cover;
+  background-position:center;
+  border-radius:15px;
+}
+@keyframes gradientMove {
+  0% { background-position:0% 50%; }
+  50% { background-position:100% 50%; }
+  100% { background-position:0% 50%; }
+}
 .section{
   padding:20px;
   text-align:center;
@@ -49,7 +77,7 @@ body{
   font-weight:bold;
 }
 
-/* small admin button */
+/* SMALL ADMIN BUTTON */
 .admin-btn{
   font-size:12px;
   padding:5px 10px;
@@ -77,7 +105,7 @@ body{
   pointer-events: none;
 }
 
-/* toast message */
+/* SUCCESS MESSAGE */
 .toast{
   position:fixed;
   top:20px;
@@ -92,6 +120,39 @@ body{
   font-weight:bold;
 }
 
+.contact-btn{
+  display:block;
+  width:80%;
+  margin:20px auto;
+  padding:12px;
+  background:#25D366;
+  color:white;
+  text-align:center;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.popup{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+}
+.popup-content{
+  background:white;
+  width:80%;
+  margin:100px auto;
+  padding:20px;
+  border-radius:10px;
+  text-align:center;
+}
+textarea{
+  width:90%;
+  height:100px;
+}
 .footer{
   background:#0f2027;
   color:white;
@@ -104,7 +165,15 @@ body{
 <body>
 
 <div class="header">
-<h1>🏡 WHITE VILLA ELLA</h1>
+  <h1>🏡 WHITE VILLA ELLA</h1>
+  <img class="logo" src="file_0000000008a4720ba5faf52db7af5a06.png">
+  <p class="description">
+    Welcome to White Villa Ella, a peaceful retreat surrounded by beautiful nature and stunning mountain views.
+  </p>
+</div>
+
+<div class="hero-frame">
+  <div class="hero"></div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -144,18 +213,31 @@ body{
 
 </div>
 
+<div class="contact-btn" onclick="openPopup()">📞 CONTACT NOW</div>
+
+<div class="popup" id="popup">
+<div class="popup-content">
+<h3>Send Message</h3>
+<textarea id="message"></textarea><br><br>
+<button class="btn" onclick="sendWhatsApp()">DONE</button><br><br>
+<button onclick="closePopup()">Close</button>
+</div>
+</div>
+
 <div class="footer">🌿 Thank you For Choosing us</div>
 
 <script>
 
-// load rooms
-window.onload=function(){
-  loadRoom("family");
-  loadRoom("economy");
-  loadRoom("budget");
-};
+// popup
+function openPopup(){document.getElementById("popup").style.display="block";}
+function closePopup(){document.getElementById("popup").style.display="none";}
+function sendWhatsApp(){
+  let message=document.getElementById("message").value;
+  if(!message){alert("Type message");return;}
+  window.open("https://wa.me/94703584922?text="+encodeURIComponent(message));
+}
 
-// password protected toggle
+// 🔐 PASSWORD ADMIN
 function secureToggle(room){
   let pw=prompt("Enter Admin Password");
   if(pw==="Whitevilla567@"){
@@ -165,6 +247,13 @@ function secureToggle(room){
     alert("Wrong Password ❌");
   }
 }
+
+// ROOM SYSTEM
+window.onload=function(){
+  loadRoom("family");
+  loadRoom("economy");
+  loadRoom("budget");
+};
 
 function toggleRoom(room){
   let status=localStorage.getItem(room);
@@ -197,19 +286,15 @@ function loadRoom(room){
   }
 }
 
-// toast message
+// SUCCESS MESSAGE
 function showToast(msg){
   let t=document.getElementById("toast");
   t.innerText=msg;
   t.style.display="block";
-
-  setTimeout(()=>{
-    t.style.display="none";
-  },3000);
+  setTimeout(()=>{t.style.display="none";},3000);
 }
 
-
-// 🔔 TELEGRAM PRO ALERT (UNCHANGED)
+// 🔔 TELEGRAM ALERT (UNCHANGED)
 (function(){
 
   let now=new Date();
