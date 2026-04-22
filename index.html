@@ -29,7 +29,6 @@ body{
   color:#ddd;
   max-width:90%;
   margin:auto;
-  line-height:1.5;
 }
 .hero-frame{
   margin:20px;
@@ -50,18 +49,6 @@ body{
   0% { background-position:0% 50%; }
   50% { background-position:100% 50%; }
   100% { background-position:0% 50%; }
-}
-.explore-box{
-  margin:20px;
-  padding:3px;
-  border-radius:15px;
-  background:linear-gradient(45deg, green, orange, yellow, red);
-}
-.explore-inner{
-  background:white;
-  border-radius:12px;
-  padding:20px;
-  text-align:center;
 }
 .section{
   padding:20px;
@@ -88,6 +75,7 @@ body{
   text-decoration:none;
   border-radius:8px;
   font-weight:bold;
+  cursor:pointer;
 }
 .sold-label{
   position:absolute;
@@ -111,27 +99,6 @@ body{
   font-weight:bold;
   cursor:pointer;
 }
-.popup{
-  display:none;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.5);
-}
-.popup-content{
-  background:white;
-  width:80%;
-  margin:100px auto;
-  padding:20px;
-  border-radius:10px;
-  text-align:center;
-}
-textarea{
-  width:90%;
-  height:100px;
-}
 .footer{
   background:#0f2027;
   color:white;
@@ -147,7 +114,7 @@ textarea{
   <h1>🏡 WHITE VILLA ELLA</h1>
   <img class="logo" src="file_0000000008a4720ba5faf52db7af5a06.png">
   <p class="description">
-    Welcome to White Villa Ella, a peaceful retreat surrounded by beautiful nature and stunning mountain views.
+    Welcome to White Villa Ella, a peaceful retreat surrounded by beautiful nature.
   </p>
 </div>
 
@@ -155,66 +122,95 @@ textarea{
   <div class="hero"></div>
 </div>
 
-<div class="explore-box">
-  <div class="explore-inner">
-    <a href="explore.html">🌿 Explore the Villa</a>
-  </div>
-</div>
-
-<div class="explore-box">
-  <div class="explore-inner">
-    <h3>🌿 Cinnamon & Nature Escape Rs 3000</h3>
-    <a href="explore-villa.html" class="btn">Explore the Villa</a>
-  </div>
-</div>
-
 <div class="section">
 <h2>Our Rooms</h2>
 
-<div class="card" id="family"><div class="card-inner">
+<!-- FAMILY -->
+<div class="card" id="family">
+<div class="card-inner">
 <h3>Family Room With Mountain View</h3>
 <p>Rs. 7500 / Night</p>
-<a href="family.html" class="btn">BOOK NOW</a>
-</div></div>
+<a href="family.html" class="btn">BOOK NOW</a><br>
+<button class="btn" onclick="markSold('family')">SET SOLD</button>
+</div>
+</div>
 
-<div class="card" id="economy"><div class="card-inner">
+<!-- ECONOMY -->
+<div class="card" id="economy">
+<div class="card-inner">
 <h3>Economy Double Room</h3>
 <p>Rs. 5000 / Night</p>
-<a href="economy.html" class="btn">BOOK NOW</a>
-</div></div>
+<a href="economy.html" class="btn">BOOK NOW</a><br>
+<button class="btn" onclick="markSold('economy')">SET SOLD</button>
+</div>
+</div>
 
-<div class="card" id="budget"><div class="card-inner">
+<!-- BUDGET -->
+<div class="card" id="budget">
+<div class="card-inner">
 <h3>Budget Double Room</h3>
 <p>Rs. 4000 / Night</p>
-<a href="budget.html" class="btn">BOOK NOW</a>
-</div></div>
+<a href="budget.html" class="btn">BOOK NOW</a><br>
+<button class="btn" onclick="markSold('budget')">SET SOLD</button>
+</div>
+</div>
 
 </div>
 
-<div class="contact-btn" onclick="openPopup()">📞 CONTACT NOW</div>
-
-<div class="popup" id="popup">
-<div class="popup-content">
-<h3>Send Message</h3>
-<textarea id="message"></textarea><br><br>
-<button class="btn" onclick="sendWhatsApp()">DONE</button><br><br>
-<button onclick="closePopup()">Close</button>
-</div>
-</div>
+<div class="contact-btn" onclick="contact()">📞 CONTACT NOW</div>
 
 <div class="footer">🌿 Thank you For Choosing us</div>
 
 <script>
-// popup
-function openPopup(){document.getElementById("popup").style.display="block";}
-function closePopup(){document.getElementById("popup").style.display="none";}
-function sendWhatsApp(){
-  let message=document.getElementById("message").value;
-  if(!message){alert("Type message");return;}
-  window.open("https://wa.me/94703584922?text="+encodeURIComponent(message));
+// 📞 WhatsApp
+function contact(){
+  window.open("https://wa.me/94703584922");
 }
 
-// TELEGRAM ALERT (UNCHANGED)
+// 🔐 PASSWORD
+const PASSWORD = "Whitevilla567@";
+
+// SOLD FUNCTION
+function markSold(id){
+  let pw = prompt("Enter Password:");
+  if(pw === PASSWORD){
+    setRoom(id);
+    localStorage.setItem(id,"sold");
+    alert("Room SOLD OUT!");
+  }else{
+    alert("Wrong Password!");
+  }
+}
+
+// APPLY SOLD STYLE
+function setRoom(id){
+  let card=document.getElementById(id);
+  let btn=card.querySelector("a");
+
+  card.style.opacity="0.5";
+
+  if(!card.querySelector(".sold-label")){
+    let label=document.createElement("div");
+    label.className="sold-label";
+    label.innerText="SOLD OUT";
+    card.appendChild(label);
+  }
+
+  btn.innerText="SOLD OUT";
+  btn.style.background="gray";
+  btn.removeAttribute("href");
+}
+
+// LOAD SAVED
+window.onload=function(){
+  ["family","economy","budget"].forEach(id=>{
+    if(localStorage.getItem(id)==="sold"){
+      setRoom(id);
+    }
+  });
+}
+
+// 🚨 TELEGRAM ALERT
 (function(){
   let now=new Date();
   let options={timeZone:'Asia/Colombo'};
@@ -248,36 +244,6 @@ function sendWhatsApp(){
     });
   });
 })();
-
-// 🔥 SOLD OUT SYSTEM FIXED
-fetch("./rooms.json")   // <-- FIXED PATH
-.then(res=>res.json())
-.then(data=>{
-  setRoom("family", data.family);
-  setRoom("economy", data.economy);
-  setRoom("budget", data.budget);
-})
-.catch(()=>{
-  console.log("rooms.json load error");
-});
-
-function setRoom(id,status){
-  if(status==="sold"){
-    let card=document.getElementById(id);
-    let btn=card.querySelector(".btn");
-
-    card.style.opacity="0.5";
-
-    let label=document.createElement("div");
-    label.className="sold-label";
-    label.innerText="SOLD OUT";
-    card.appendChild(label);
-
-    btn.innerText="SOLD OUT";
-    btn.style.background="gray";
-    btn.removeAttribute("href");
-  }
-}
 </script>
 
 </body>
