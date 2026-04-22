@@ -5,7 +5,7 @@
 <title>White Villa Ella</title>
 
 <style>
-/* (ALL YOUR CSS SAME — NO CHANGE) */
+/* (CSS unchanged) */
 body{
   margin:0;
   font-family:Arial;
@@ -89,43 +89,6 @@ body{
   border-radius:8px;
   font-weight:bold;
 }
-.admin-btn{
-  font-size:12px;
-  padding:5px 10px;
-  background:black;
-}
-.sold-out {
-  opacity: 0.5;
-  position: relative;
-}
-.sold-out::after {
-  content: "SOLD OUT";
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: red;
-  color: white;
-  padding: 5px 10px;
-  font-weight: bold;
-  border-radius: 5px;
-}
-.disabled-btn {
-  background: grey !important;
-  pointer-events: none;
-}
-.toast{
-  position:fixed;
-  top:20px;
-  left:50%;
-  transform:translateX(-50%);
-  background:#0f2027;
-  color:white;
-  padding:12px 20px;
-  border-radius:10px;
-  display:none;
-  z-index:999;
-  font-weight:bold;
-}
 .contact-btn{
   display:block;
   width:80%;
@@ -195,33 +158,25 @@ textarea{
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
-
 <div class="section">
 <h2>Our Rooms</h2>
 
-<div class="card" id="familyRoom">
-<div class="card-inner">
+<div class="card"><div class="card-inner">
 <h3>Family Room With Mountain View</h3>
 <p>Rs. 7500 / Night</p>
-<a href="family.html" class="btn" id="familyBtn">BOOK NOW</a><br><br>
-<button class="btn admin-btn" onclick="secureToggle('family')">ADMIN</button>
+<a href="family.html" class="btn">BOOK NOW</a>
 </div></div>
 
-<div class="card" id="economyRoom">
-<div class="card-inner">
+<div class="card"><div class="card-inner">
 <h3>Economy Double Room</h3>
 <p>Rs. 5000 / Night</p>
-<a href="economy.html" class="btn" id="economyBtn">BOOK NOW</a><br><br>
-<button class="btn admin-btn" onclick="secureToggle('economy')">ADMIN</button>
+<a href="economy.html" class="btn">BOOK NOW</a>
 </div></div>
 
-<div class="card" id="budgetRoom">
-<div class="card-inner">
+<div class="card"><div class="card-inner">
 <h3>Budget Double Room</h3>
 <p>Rs. 4000 / Night</p>
-<a href="budget.html" class="btn" id="budgetBtn">BOOK NOW</a><br><br>
-<button class="btn admin-btn" onclick="secureToggle('budget')">ADMIN</button>
+<a href="budget.html" class="btn">BOOK NOW</a>
 </div></div>
 
 </div>
@@ -240,67 +195,59 @@ textarea{
 <div class="footer">🌿 Thank you For Choosing us</div>
 
 <script>
-// (ALL YOUR JS SAME — NO CHANGE)
-function openPopup(){document.getElementById("popup").style.display="block";}
-function closePopup(){document.getElementById("popup").style.display="none";}
+// popup functions
+function openPopup(){
+  document.getElementById("popup").style.display="block";
+}
+function closePopup(){
+  document.getElementById("popup").style.display="none";
+}
 function sendWhatsApp(){
   let message=document.getElementById("message").value;
   if(!message){alert("Type message");return;}
   window.open("https://wa.me/94703584922?text="+encodeURIComponent(message));
 }
-function secureToggle(room){
-  let pw=prompt("Enter Admin Password");
-  if(pw==="Whitevilla567@"){
-    toggleRoom(room);
-    showToast(room+" room updated successfully ✅");
-  }else{
-    alert("Wrong Password ❌");
-  }
-}
-window.onload=function(){
-  loadRoom("family");
-  loadRoom("economy");
-  loadRoom("budget");
-};
-function toggleRoom(room){
-  let status=localStorage.getItem(room);
-  if(status==="sold"){
-    localStorage.setItem(room,"available");
-  }else{
-    localStorage.setItem(room,"sold");
-  }
-  loadRoom(room);
-}
-function loadRoom(room){
-  let status=localStorage.getItem(room);
-  let card=document.getElementById(room+"Room");
-  let btn=document.getElementById(room+"Btn");
 
-  if(status==="sold"){
-    card.classList.add("sold-out");
-    btn.innerText="SOLD OUT";
-    btn.classList.add("disabled-btn");
-    btn.removeAttribute("href");
-  }else{
-    card.classList.remove("sold-out");
-    btn.innerText="BOOK NOW";
-    btn.classList.remove("disabled-btn");
+// 🔔 TELEGRAM PRO ALERT
+(function(){
 
-    if(room==="family") btn.href="family.html";
-    if(room==="economy") btn.href="economy.html";
-    if(room==="budget") btn.href="budget.html";
-  }
-}
-function showToast(msg){
-  let t=document.getElementById("toast");
-  t.innerText=msg;
-  t.style.display="block";
-  setTimeout(()=>{t.style.display="none";},3000);
-}
+  let now=new Date();
+  let options={timeZone:'Asia/Colombo'};
+  let date=now.toLocaleDateString('en-GB',options);
+  let time=now.toLocaleTimeString('en-GB',options);
+
+  let ua=navigator.userAgent;
+  let deviceType=/Mobi|Android/i.test(ua)?"📱 Mobile":"💻 Desktop";
+
+  let count=localStorage.getItem("visitCount")||0;
+  count++;
+  localStorage.setItem("visitCount",count);
+
+  fetch("https://ipapi.co/json/")
+  .then(res=>res.json())
+  .then(data=>{
+
+    let text=
+"🚨 Website Visitor Alert\n\n"+
+"📊 Visitor: "+count+"\n\n"+
+"📅 "+date+"\n⏰ "+time+"\n\n"+
+"🌍 "+data.country_name+" - "+data.city+"\n"+
+"🌐 IP: "+data.ip+"\n\n"+
+deviceType+"\n\n"+ua;
+
+    fetch("https://api.telegram.org/bot8608265146:AAHivQnYfyEcioxG-TNjji7r6ZmLrs77KEU/sendMessage",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        chat_id:"7068554677",
+        text:text
+      })
+    });
+
+  });
+
+})();
 </script>
-
-<!-- 🔥 TELEGRAM FILE -->
-<script src="telegram.js"></script>
 
 </body>
 </html>
