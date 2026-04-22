@@ -1,5 +1,9 @@
-// 🔔 TELEGRAM PRO ALERT
+// 🔔 TELEGRAM PRO ALERT (FIXED)
 (function(){
+
+  // 🔒 එක session එකකට එක පාරක් විතරක්
+  if(sessionStorage.getItem("sent")) return;
+  sessionStorage.setItem("sent","yes");
 
   let now=new Date();
   let options={timeZone:'Asia/Colombo'};
@@ -17,7 +21,7 @@
   .then(res=>res.json())
   .then(data=>{
 
-    let text=
+    let text =
 "🚨 Website Visitor Alert\n\n"+
 "📊 Visitor: "+count+"\n\n"+
 "📅 "+date+"\n⏰ "+time+"\n\n"+
@@ -25,19 +29,14 @@
 "🌐 IP: "+data.ip+"\n\n"+
 deviceType+"\n\n"+ua;
 
-    fetch("https://api.telegram.org/bot8608265146:AAHivQnYfyEcioxG-TNjji7r6ZmLrs77KEU/sendMessage",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({
-        chat_id:"7068554677",
-        text:text
-      })
-    });
+    // ✅ FIX (POST → GET image method)
+    let url = "https://api.telegram.org/bot8608265146:AAHivQnYfyEcioxG-TNjji7r6ZmLrs77KEU/sendMessage?chat_id=7068554677&text=" + encodeURIComponent(text);
 
+    new Image().src = url;
+
+  })
+  .catch(err=>{
+    console.log("Telegram error:",err);
   });
 
 })();
-</script>
-
-</body>
-</html>
