@@ -1,3 +1,129 @@
+<!-- 🔥 FOOTER STYLES (self-contained) -->
+<style>
+.custom-footer{
+  background:#0a0a0a;
+  color:#ccc;
+  padding:40px 20px;
+  text-align:center;
+  font-family:Arial;
+}
+
+.footer-container{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  text-align:left;
+}
+
+.footer-section{
+  width:30%;
+  min-width:250px;
+  margin-bottom:20px;
+}
+
+.footer-section h2{
+  color:#fff;
+  margin-bottom:10px;
+}
+
+.footer-section ul{
+  list-style:none;
+  padding:0;
+}
+
+.footer-section ul li{
+  margin:8px 0;
+}
+
+.footer-section ul li a{
+  color:#aaa;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.footer-section ul li a:hover{
+  color:#00ffcc;
+  padding-left:5px;
+}
+
+/* WhatsApp button */
+.whatsapp-btn{
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 15px;
+  background:#25D366;
+  color:white;
+  border-radius:8px;
+  text-decoration:none;
+  transition:0.3s;
+}
+.whatsapp-btn:hover{
+  background:#1ebd5a;
+}
+
+/* Trust box */
+.trust-box{
+  margin:20px auto;
+  padding:10px;
+  background:#111;
+  border:1px solid #333;
+  border-radius:10px;
+  width:fit-content;
+}
+
+/* Social icons */
+.social-icons{
+  margin:15px 0;
+}
+
+.social-icons a{
+  font-size:20px;
+  margin:0 10px;
+  color:#aaa;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.social-icons a:hover{
+  color:#00ffcc;
+  transform:scale(1.2);
+}
+
+.footer-bottom{
+  border-top:1px solid #222;
+  margin-top:20px;
+  padding-top:15px;
+  font-size:14px;
+}
+
+/* Floating button */
+.float-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:linear-gradient(45deg,#00c6ff,#0072ff);
+  color:white;
+  font-size:22px;
+  padding:15px;
+  border-radius:50%;
+  text-decoration:none;
+  box-shadow:0 0 15px rgba(0,0,0,0.3);
+  z-index:999;
+}
+
+/* Mobile */
+@media(max-width:768px){
+  .footer-container{
+    flex-direction:column;
+    text-align:center;
+  }
+  .footer-section{
+    width:100%;
+  }
+}
+</style>
+
+<!-- 🔥 FOOTER HTML -->
 <div class="custom-footer">
 
   <div class="footer-container">
@@ -5,8 +131,8 @@
     <div class="footer-section">
       <h2>About Us</h2>
       <p>
-        Experience the beauty of Ella with White Villa. 
-        Nature, comfort and unforgettable stays in one place.
+        Experience the beauty of Ella with White Villa.
+        Peaceful nature, mountain views and relaxing stays.
       </p>
     </div>
 
@@ -14,31 +140,28 @@
       <h2>Quick Links</h2>
       <ul>
         <li><a href="#">About Us</a></li>
+        <li><a href="#">Rooms</a></li>
         <li><a href="#">Contact</a></li>
-        <li><a href="#">Terms & Conditions</a></li>
         <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">FAQ</a></li>
       </ul>
     </div>
 
     <div class="footer-section">
       <h2>Contact Us</h2>
-      <p>📞 WhatsApp: +94 70 358 4922</p>
-      <p>💬 Telegram: @yourusername</p>
-      <p>📧 Email: your@email.com</p>
+      <p>📞 +94 70 358 4922</p>
+      <p>📧 whitevillaella@gmail.com</p>
 
-      <!-- 🔥 WHATSAPP BUTTON -->
-      <a href="https://wa.me/94703584922" class="whatsapp-btn">Chat on WhatsApp</a>
+      <a href="https://wa.me/94703584922" class="whatsapp-btn">
+        💬 Chat on WhatsApp
+      </a>
     </div>
 
   </div>
 
-  <!-- ⭐ TRUST -->
   <div class="trust-box">
-    ⭐ Rated 5 Stars by Happy Guests
+    ⭐ Rated 5 Stars by Guests
   </div>
 
-  <!-- 🌐 SOCIAL -->
   <div class="social-icons">
     <a href="#">📘</a>
     <a href="#">📸</a>
@@ -51,3 +174,6 @@
   </div>
 
 </div>
+
+<!-- 🔥 FLOATING BUTTON -->
+<a href="https://wa.me/94703584922" class="float-btn">💬</a>
