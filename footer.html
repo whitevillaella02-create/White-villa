@@ -1,4 +1,4 @@
-<!-- 🔥 FULL FOOTER (ALL IN ONE) -->
+<!-- 🔥 FULL FOOTER (UPDATED) -->
 <style>
 .custom-footer{
   background:#0a0a0a;
@@ -23,7 +23,6 @@
 
 .footer-section h2{
   color:#fff;
-  margin-bottom:10px;
 }
 
 .footer-section ul{
@@ -38,12 +37,10 @@
 .footer-section ul li a{
   color:#aaa;
   text-decoration:none;
-  transition:0.3s;
 }
 
 .footer-section ul li a:hover{
   color:#00ffcc;
-  padding-left:5px;
 }
 
 /* WhatsApp button */
@@ -70,39 +67,38 @@
 /* 🔥 SOCIAL BOX */
 .social-box{
   background:#111;
-  padding:25px;
+  padding:20px;
   border-radius:15px;
   margin-top:20px;
 }
 
 .social-box h2{
   color:#fff;
+  margin-bottom:10px;
 }
 
+/* 🔥 ROW STYLE */
 .social-grid{
   display:flex;
   justify-content:center;
-  flex-wrap:wrap;
-  gap:15px;
-  margin-top:15px;
+  gap:12px;
+  flex-wrap:nowrap; /* එක පෙළට */
+  overflow-x:auto; /* mobile scroll */
 }
 
+/* 🔥 SMALL ICONS */
 .social-card{
-  width:80px;
-  height:80px;
+  width:65px;
+  height:65px;
   border-radius:15px;
   display:flex;
-  flex-direction:column;
   align-items:center;
   justify-content:center;
   text-decoration:none;
   color:#fff;
-  font-size:13px;
+  font-size:22px;
+  flex-shrink:0;
   transition:0.3s;
-}
-
-.social-card div{
-  font-size:24px;
 }
 
 .social-card:hover{
@@ -111,14 +107,14 @@
 
 /* Colors */
 .fb{background:#1877f2;}
-.ig{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366);}
+.ig{background:linear-gradient(45deg,#f09433,#dc2743,#cc2366);}
 .tt{background:#000;}
 .tg{background:#0088cc;}
 .wa{background:#25D366;}
 
 /* contact buttons */
 .contact-links{
-  margin-top:20px;
+  margin-top:15px;
 }
 
 .call-btn, .chat-btn{
@@ -137,7 +133,6 @@
   border-top:1px solid #222;
   margin-top:20px;
   padding-top:15px;
-  font-size:14px;
 }
 
 /* Floating button */
@@ -203,38 +198,17 @@
     ⭐ Rated 5 Stars by Guests
   </div>
 
-  <!-- 🔥 NEW SOCIAL SECTION -->
+  <!-- 🔥 SOCIAL ROW -->
   <div class="social-box">
 
     <h2>Follow Us</h2>
 
     <div class="social-grid">
-
-      <a href="https://facebook.com/YOUR_PAGE" class="social-card fb">
-        <div>📘</div>
-        <span>Facebook</span>
-      </a>
-
-      <a href="https://instagram.com/YOUR_PAGE" class="social-card ig">
-        <div>📸</div>
-        <span>Instagram</span>
-      </a>
-
-      <a href="https://tiktok.com/@YOUR_PAGE" class="social-card tt">
-        <div>🎵</div>
-        <span>TikTok</span>
-      </a>
-
-      <a href="https://t.me/YOUR_CHANNEL" class="social-card tg">
-        <div>✈️</div>
-        <span>Telegram</span>
-      </a>
-
-      <a href="https://wa.me/94703584922" class="social-card wa">
-        <div>💬</div>
-        <span>WhatsApp</span>
-      </a>
-
+      <a href="https://facebook.com/YOUR_PAGE" class="social-card fb">📘</a>
+      <a href="https://instagram.com/YOUR_PAGE" class="social-card ig">📸</a>
+      <a href="https://tiktok.com/@YOUR_PAGE" class="social-card tt">🎵</a>
+      <a href="https://t.me/YOUR_CHANNEL" class="social-card tg">✈️</a>
+      <a href="https://wa.me/94703584922" class="social-card wa">💬</a>
     </div>
 
     <div class="contact-links">
@@ -250,5 +224,4 @@
 
 </div>
 
-<!-- FLOAT BUTTON -->
 <a href="https://wa.me/94703584922" class="float-btn">💬</a>
