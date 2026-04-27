@@ -1,4 +1,4 @@
-<!-- 🔥 FOOTER STYLES (self-contained) -->
+<!-- 🔥 FULL FOOTER (ALL IN ONE) -->
 <style>
 .custom-footer{
   background:#0a0a0a;
@@ -55,10 +55,6 @@
   color:white;
   border-radius:8px;
   text-decoration:none;
-  transition:0.3s;
-}
-.whatsapp-btn:hover{
-  background:#1ebd5a;
 }
 
 /* Trust box */
@@ -71,23 +67,71 @@
   width:fit-content;
 }
 
-/* Social icons */
-.social-icons{
-  margin:15px 0;
+/* 🔥 SOCIAL BOX */
+.social-box{
+  background:#111;
+  padding:25px;
+  border-radius:15px;
+  margin-top:20px;
 }
 
-.social-icons a{
-  font-size:20px;
-  margin:0 10px;
-  color:#aaa;
+.social-box h2{
+  color:#fff;
+}
+
+.social-grid{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:15px;
+  margin-top:15px;
+}
+
+.social-card{
+  width:80px;
+  height:80px;
+  border-radius:15px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
   text-decoration:none;
+  color:#fff;
+  font-size:13px;
   transition:0.3s;
 }
 
-.social-icons a:hover{
-  color:#00ffcc;
-  transform:scale(1.2);
+.social-card div{
+  font-size:24px;
 }
+
+.social-card:hover{
+  transform:scale(1.1);
+}
+
+/* Colors */
+.fb{background:#1877f2;}
+.ig{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366);}
+.tt{background:#000;}
+.tg{background:#0088cc;}
+.wa{background:#25D366;}
+
+/* contact buttons */
+.contact-links{
+  margin-top:20px;
+}
+
+.call-btn, .chat-btn{
+  display:inline-block;
+  margin:5px;
+  padding:10px 15px;
+  border-radius:8px;
+  text-decoration:none;
+  color:#fff;
+}
+
+.call-btn{background:#0072ff;}
+.chat-btn{background:#25D366;}
 
 .footer-bottom{
   border-top:1px solid #222;
@@ -107,8 +151,6 @@
   padding:15px;
   border-radius:50%;
   text-decoration:none;
-  box-shadow:0 0 15px rgba(0,0,0,0.3);
-  z-index:999;
 }
 
 /* Mobile */
@@ -123,7 +165,6 @@
 }
 </style>
 
-<!-- 🔥 FOOTER HTML -->
 <div class="custom-footer">
 
   <div class="footer-container">
@@ -162,11 +203,45 @@
     ⭐ Rated 5 Stars by Guests
   </div>
 
-  <div class="social-icons">
-    <a href="#">📘</a>
-    <a href="#">📸</a>
-    <a href="#">🎵</a>
-    <a href="#">💬</a>
+  <!-- 🔥 NEW SOCIAL SECTION -->
+  <div class="social-box">
+
+    <h2>Follow Us</h2>
+
+    <div class="social-grid">
+
+      <a href="https://facebook.com/YOUR_PAGE" class="social-card fb">
+        <div>📘</div>
+        <span>Facebook</span>
+      </a>
+
+      <a href="https://instagram.com/YOUR_PAGE" class="social-card ig">
+        <div>📸</div>
+        <span>Instagram</span>
+      </a>
+
+      <a href="https://tiktok.com/@YOUR_PAGE" class="social-card tt">
+        <div>🎵</div>
+        <span>TikTok</span>
+      </a>
+
+      <a href="https://t.me/YOUR_CHANNEL" class="social-card tg">
+        <div>✈️</div>
+        <span>Telegram</span>
+      </a>
+
+      <a href="https://wa.me/94703584922" class="social-card wa">
+        <div>💬</div>
+        <span>WhatsApp</span>
+      </a>
+
+    </div>
+
+    <div class="contact-links">
+      <a href="tel:+94703584922" class="call-btn">📞 Call Now</a>
+      <a href="https://wa.me/94703584922" class="chat-btn">💬 WhatsApp</a>
+    </div>
+
   </div>
 
   <div class="footer-bottom">
@@ -175,5 +250,5 @@
 
 </div>
 
-<!-- 🔥 FLOATING BUTTON -->
+<!-- FLOAT BUTTON -->
 <a href="https://wa.me/94703584922" class="float-btn">💬</a>
