@@ -1,4 +1,4 @@
-<!-- 🔥 FULL FOOTER FINAL (SMALL ICON ROW FIXED) -->
+<!-- 🔥 FULL FOOTER FINAL WITH SOCIAL NAMES -->
 <style>
 .custom-footer{
   background:#0a0a0a;
@@ -64,7 +64,7 @@
   width:fit-content;
 }
 
-/* 🔥 SOCIAL BOX */
+/* SOCIAL BOX */
 .social-box{
   background:#111;
   padding:15px;
@@ -77,20 +77,28 @@
   margin-bottom:10px;
 }
 
-/* 🔥 PERFECT ROW */
+/* ROW */
 .social-grid{
   display:flex;
   justify-content:center;
-  gap:8px; /* gap අඩු */
-  flex-wrap:nowrap !important;
+  gap:10px;
+  flex-wrap:nowrap;
   overflow-x:auto;
-  padding-bottom:5px;
 }
 
-/* 🔥 SMALL ICONS (FINAL) */
+/* ITEM (icon + text) */
+.social-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:11px; /* 👈 small text */
+  color:#aaa;
+}
+
+/* ICON */
 .social-card{
-  width:50px;   /* 👈 size පොඩි */
-  height:50px;  /* 👈 size පොඩි */
+  width:50px;
+  height:50px;
   border-radius:12px;
   display:flex;
   align-items:center;
@@ -98,7 +106,7 @@
   text-decoration:none;
   color:#fff;
   font-size:20px;
-  flex-shrink:0;
+  margin-bottom:4px;
   transition:0.3s;
 }
 
@@ -199,17 +207,38 @@
     ⭐ Rated 5 Stars by Guests
   </div>
 
-  <!-- 🔥 SOCIAL ROW FINAL -->
+  <!-- 🔥 SOCIAL -->
   <div class="social-box">
 
     <h2>Follow Us</h2>
 
     <div class="social-grid">
-      <a href="https://facebook.com/YOUR_PAGE" class="social-card fb">📘</a>
-      <a href="https://instagram.com/YOUR_PAGE" class="social-card ig">📸</a>
-      <a href="https://tiktok.com/@YOUR_PAGE" class="social-card tt">🎵</a>
-      <a href="https://t.me/YOUR_CHANNEL" class="social-card tg">✈️</a>
-      <a href="https://wa.me/94703584922" class="social-card wa">💬</a>
+
+      <div class="social-item">
+        <a href="#" class="social-card fb">📘</a>
+        <span>Facebook</span>
+      </div>
+
+      <div class="social-item">
+        <a href="#" class="social-card ig">📸</a>
+        <span>Instagram</span>
+      </div>
+
+      <div class="social-item">
+        <a href="#" class="social-card tt">🎵</a>
+        <span>TikTok</span>
+      </div>
+
+      <div class="social-item">
+        <a href="#" class="social-card tg">✈️</a>
+        <span>Telegram</span>
+      </div>
+
+      <div class="social-item">
+        <a href="https://wa.me/94703584922" class="social-card wa">💬</a>
+        <span>WhatsApp</span>
+      </div>
+
     </div>
 
     <div class="contact-links">
