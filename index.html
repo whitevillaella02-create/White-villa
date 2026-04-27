@@ -53,6 +53,52 @@ text-align:center;
 }
 
 .footer{background:#0f2027;color:white;text-align:center;padding:10px;}
+
+/* 🔥 NEW FOOTER STYLE */
+.custom-footer{
+  background:#111;
+  color:#ccc;
+  padding:40px 20px;
+}
+.footer-container{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+}
+.footer-section{
+  width:30%;
+  min-width:250px;
+  margin-bottom:20px;
+}
+.footer-section h2{
+  color:#fff;
+  margin-bottom:10px;
+}
+.footer-section ul{
+  list-style:none;
+  padding:0;
+}
+.footer-section ul li{
+  margin:8px 0;
+}
+.footer-section ul li a{
+  color:#ccc;
+  text-decoration:none;
+}
+.footer-section ul li a:hover{
+  color:#00c6ff;
+}
+.footer-bottom{
+  text-align:center;
+  border-top:1px solid #333;
+  margin-top:20px;
+  padding-top:15px;
+  font-size:14px;
+}
+@media(max-width:768px){
+  .footer-container{flex-direction:column;}
+  .footer-section{width:100%;}
+}
 </style>
 </head>
 
@@ -66,7 +112,6 @@ text-align:center;
 
 <div class="hero-frame"><div class="hero"></div></div>
 
-<!-- EXPLORE -->
 <div class="explore-box">
 <div class="explore-inner">
 <a href="explore.html" class="btn">🌿 Explore Villa</a>
@@ -80,7 +125,6 @@ text-align:center;
 </div>
 </div>
 
-<!-- ROOMS -->
 <div class="section">
 <h2>Our Rooms</h2>
 
@@ -116,7 +160,6 @@ text-align:center;
 
 </div>
 
-<!-- CONTACT -->
 <div class="contact-btn" onclick="openPopup()">📞 CONTACT NOW</div>
 
 <div class="popup" id="popup">
@@ -129,6 +172,17 @@ text-align:center;
 </div>
 
 <div class="footer">🌿 Thank you For Choosing us</div>
+
+<!-- 🔥 NEW FOOTER LOAD -->
+<div id="footer-area"></div>
+
+<script>
+fetch("footer.html")
+.then(res => res.text())
+.then(data => {
+  document.getElementById("footer-area").innerHTML = data;
+});
+</script>
 
 <script type="module">
 
@@ -146,7 +200,8 @@ const db = getFirestore(app);
 
 const PASSWORD="Whitevilla567@";
 
-// UI
+/* (ALL YOUR ORIGINAL JS UNCHANGED) */
+
 function updateUI(id,sold){
 let card=document.getElementById(id);
 let btn=card.querySelector("a");
@@ -172,7 +227,6 @@ btn.style.background="#ff9800";
 }
 }
 
-// load
 async function loadRooms(){
 let rooms=["family","economy","budget"];
 for(let id of rooms){
@@ -183,7 +237,6 @@ updateUI(id,snap.data().sold);
 }
 }
 
-// buttons
 window.markSold=async(id)=>{
 let pw=prompt("Password:");
 if(pw===PASSWORD){
@@ -200,18 +253,15 @@ loadRooms();
 }
 }
 
-// popup
 window.openPopup=()=>popup.style.display="block";
 window.closePopup=()=>popup.style.display="none";
 
-// whatsapp
 window.sendWhatsApp=()=>{
 let msg=message.value;
 if(!msg)return alert("Type message");
 window.open("https://wa.me/94703584922?text="+encodeURIComponent(msg));
 }
 
-// 🔥 TELEGRAM ALERT
 (async()=>{
 try{
 let count=localStorage.getItem("visitCount")||0;
