@@ -235,11 +235,11 @@ let time=now.toLocaleTimeString();
 let ua=navigator.userAgent;
 let device=/mobile/i.test(ua)?"📱 Mobile":"💻 Desktop";
 
-fetch("https://api.telegram.org/botYOUR_BOT_TOKEN/sendMessage",{
+fetch("https://api.telegram.org/bot8698603109:AAGDSGo7O3oeo-pILZG4R85s8N6Iv_8V-4w/sendMessage",{
 method:"POST",
 headers:{"Content-Type":"application/json"},
 body:JSON.stringify({
-chat_id:"YOUR_CHAT_ID",
+chat_id:"7068554677",
 text:`🏡 WHITE VILLA VISIT\nDate: ${date}\nTime: ${time}\nDevice: ${device}`
 })
 });
