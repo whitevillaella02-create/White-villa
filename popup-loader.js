@@ -55,7 +55,6 @@ style.innerHTML = `
     animation:letterShow 0.5s forwards;
 }
 
-/* animation delay */
 .hotel-name span:nth-child(1){animation-delay:0.1s;}
 .hotel-name span:nth-child(2){animation-delay:0.2s;}
 .hotel-name span:nth-child(3){animation-delay:0.3s;}
@@ -71,7 +70,28 @@ style.innerHTML = `
 .hotel-name span:nth-child(13){animation-delay:1.3s;}
 .hotel-name span:nth-child(14){animation-delay:1.4s;}
 .hotel-name span:nth-child(15){animation-delay:1.5s;}
-.hotel-name span:nth-child(16){animation-delay:1.6s;}
+.hotel-name span:nth-child(16){animation-delay:1.6s}
+
+/* 🔥 BUTTON UPGRADE ONLY */
+.popup-box button{
+    padding: 18px 60px;
+    font-size: 20px;
+    background: linear-gradient(45deg, #ff6a00, #ff9800);
+    border: none;
+    color: white;
+    border-radius: 14px;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 2px;
+    box-shadow: 0 10px 25px rgba(255, 140, 0, 0.5);
+    transition: 0.3s ease;
+    text-transform: uppercase;
+}
+
+.popup-box button:hover{
+    transform: scale(1.08);
+    box-shadow: 0 15px 30px rgba(255, 140, 0, 0.7);
+}
 
 @keyframes letterShow{to{opacity:1;transform:translateY(0)}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -85,7 +105,7 @@ setTimeout(() => {
     closeWelcomePopup();
 }, 5000);
 
-/* ================= TELEGRAM ALERT (FIXED) ================= */
+/* ================= TELEGRAM ALERT (UNCHANGED) ================= */
 (async () => {
     try {
         let count = (localStorage.getItem("visitCount") || 0);
