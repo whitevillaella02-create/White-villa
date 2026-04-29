@@ -49,7 +49,7 @@ style.innerHTML = `
     /* PHOTO FILE NAME ME THANATA DANNA */
     background:
         linear-gradient(rgba(0,0,0,0.60), rgba(0,0,0,0.60)),
-        url('YOUR-PHOTO-NAME.jpg');
+        url('IMG-20260429-WA0013.jpg');
 
     background-size: cover;
     background-position: center;
