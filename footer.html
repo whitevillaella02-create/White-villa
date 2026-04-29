@@ -1,241 +1,224 @@
-<!-- 🔥 FULL FOOTER FINAL WITH SOCIAL LINKS -->
-<style>
-.custom-footer{
-  background:#0a0a0a;
-  color:#ccc;
-  padding:40px 15px;
-  text-align:center;
-  font-family:Arial;
-}
+<!-- 🔥 FULL FOOTER FINAL WITH SOCIAL LINKS -->  <style>  
+.custom-footer{  
+  background:#0a0a0a;  
+  color:#ccc;  
+  padding:40px 15px;  
+  text-align:center;  
+  font-family:Arial;  
+}  
+  
+.footer-container{  
+  display:flex;  
+  flex-wrap:wrap;  
+  justify-content:space-between;  
+  text-align:left;  
+}  
+  
+.footer-section{  
+  width:30%;  
+  min-width:250px;  
+  margin-bottom:20px;  
+}  
+  
+.footer-section h2{color:#fff;}  
+  
+.footer-section ul{  
+  list-style:none;  
+  padding:0;  
+}  
+  
+.footer-section ul li{margin:8px 0;}  
+  
+.footer-section ul li a{  
+  color:#aaa;  
+  text-decoration:none;  
+}  
+  
+.footer-section ul li a:hover{color:#00ffcc;}  
+  
+.whatsapp-btn{  
+  display:inline-block;  
+  margin-top:10px;  
+  padding:10px 15px;  
+  background:#25D366;  
+  color:white;  
+  border-radius:8px;  
+  text-decoration:none;  
+}  
+  
+.trust-box{  
+  margin:20px auto;  
+  padding:8px 15px;  
+  background:#111;  
+  border:1px solid #333;  
+  border-radius:10px;  
+  width:fit-content;  
+}  
+  
+/* SOCIAL */  
+.social-box{  
+  background:#111;  
+  padding:15px;  
+  border-radius:15px;  
+  margin-top:20px;  
+}  
+  
+.social-box h2{  
+  color:#fff;  
+  margin-bottom:10px;  
+}  
+  
+.social-grid{  
+  display:flex;  
+  justify-content:center;  
+  gap:12px;  
+  overflow-x:auto;  
+}  
+  
+/* ITEM */  
+.social-item{  
+  display:flex;  
+  flex-direction:column;  
+  align-items:center;  
+  min-width:60px;  
+}  
+  
+/* IMAGE ICON */  
+.social-card img{  
+  width:50px;  
+  height:50px;  
+  border-radius:12px;  
+  object-fit:cover;  
+  margin-bottom:5px;  
+  transition:0.3s;  
+}  
+  
+.social-card img:hover{  
+  transform:scale(1.1);  
+}  
+  
+/* NAME */  
+.social-item span{  
+  font-size:11px;  
+  color:#ccc;  
+}  
+  
+/* buttons */  
+.contact-links{margin-top:15px;}  
+  
+.call-btn, .chat-btn{  
+  display:inline-block;  
+  margin:5px;  
+  padding:10px 15px;  
+  border-radius:8px;  
+  text-decoration:none;  
+  color:#fff;  
+}  
+  
+.call-btn{background:#0072ff;}  
+.chat-btn{background:#25D366;}  
+  
+.footer-bottom{  
+  border-top:1px solid #222;  
+  margin-top:20px;  
+  padding-top:15px;  
+}  
+  
+.float-btn{  
+  position:fixed;  
+  bottom:20px;  
+  right:20px;  
+  background:linear-gradient(45deg,#00c6ff,#0072ff);  
+  color:white;  
+  font-size:22px;  
+  padding:15px;  
+  border-radius:50%;  
+  text-decoration:none;  
+}  
+  
+@media(max-width:768px){  
+  .footer-container{  
+    flex-direction:column;  
+    text-align:center;  
+  }  
+  .footer-section{width:100%;}  
+}  
+</style>  <div class="custom-footer">    <div class="footer-container">  <div class="footer-section">  
+  <h2>About Us</h2>  
+  <p>Experience the beauty of Ella with White Villa.</p>  
+</div>  
 
-.footer-container{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:space-between;
-  text-align:left;
-}
+<div class="footer-section">  
+  <h2>Quick Links</h2>  
+  <ul>  
+    <li><a href="#">About Us</a></li>  
+    <li><a href="#">Rooms</a></li>  
+    <li><a href="#">Contact</a></li>  
+  </ul>  
+</div>  
 
-.footer-section{
-  width:30%;
-  min-width:250px;
-  margin-bottom:20px;
-}
-
-.footer-section h2{color:#fff;}
-
-.footer-section ul{
-  list-style:none;
-  padding:0;
-}
-
-.footer-section ul li{margin:8px 0;}
-
-.footer-section ul li a{
-  color:#aaa;
-  text-decoration:none;
-}
-
-.footer-section ul li a:hover{color:#00ffcc;}
-
-.whatsapp-btn{
-  display:inline-block;
-  margin-top:10px;
-  padding:10px 15px;
-  background:#25D366;
-  color:white;
-  border-radius:8px;
-  text-decoration:none;
-}
-
-.trust-box{
-  margin:20px auto;
-  padding:8px 15px;
-  background:#111;
-  border:1px solid #333;
-  border-radius:10px;
-  width:fit-content;
-}
-
-/* SOCIAL */
-.social-box{
-  background:#111;
-  padding:15px;
-  border-radius:15px;
-  margin-top:20px;
-}
-
-.social-box h2{
-  color:#fff;
-  margin-bottom:10px;
-}
-
-.social-grid{
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  overflow-x:auto;
-}
-
-/* ITEM */
-.social-item{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  min-width:60px;
-}
-
-/* IMAGE ICON */
-.social-card img{
-  width:50px;
-  height:50px;
-  border-radius:12px;
-  object-fit:cover;
-  margin-bottom:5px;
-  transition:0.3s;
-}
-
-.social-card img:hover{
-  transform:scale(1.1);
-}
-
-/* NAME */
-.social-item span{
-  font-size:11px;
-  color:#ccc;
-}
-
-/* buttons */
-.contact-links{margin-top:15px;}
-
-.call-btn, .chat-btn{
-  display:inline-block;
-  margin:5px;
-  padding:10px 15px;
-  border-radius:8px;
-  text-decoration:none;
-  color:#fff;
-}
-
-.call-btn{background:#0072ff;}
-.chat-btn{background:#25D366;}
-
-.footer-bottom{
-  border-top:1px solid #222;
-  margin-top:20px;
-  padding-top:15px;
-}
-
-.float-btn{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:linear-gradient(45deg,#00c6ff,#0072ff);
-  color:white;
-  font-size:22px;
-  padding:15px;
-  border-radius:50%;
-  text-decoration:none;
-}
-
-@media(max-width:768px){
-  .footer-container{
-    flex-direction:column;
-    text-align:center;
-  }
-  .footer-section{width:100%;}
-}
-</style>
-
-<div class="custom-footer">
-
-  <div class="footer-container">
-
-    <div class="footer-section">
-      <h2>About Us</h2>
-      <p>Experience the beauty of Ella with White Villa.</p>
-    </div>
-
-    <div class="footer-section">
-      <h2>Quick Links</h2>
-      <ul>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Rooms</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-section">
-      <h2>Contact</h2>
-      <p>📞 +94 70 358 4922</p>
-      <a href="https://wa.me/94703584922" class="whatsapp-btn">💬 WhatsApp</a>
-    </div>
-
-  </div>
-
-  <div class="trust-box">
-    ⭐ Rated 5 Stars
-  </div>
-
-  <!-- 🔥 SOCIAL -->
-  <div class="social-box">
-
-    <h2>Follow Us</h2>
-
-    <div class="social-grid">
-
-      <!-- Facebook -->
-      <div class="social-item">
-        <a href="https://www.facebook.com/share/1KMqBGdvEC/" target="_blank" class="social-card">
-          <img src="Screenshot_20260427_175614_Google Play Store.jpg">
-        </a>
-        <span>Facebook</span>
-      </div>
-
-      <!-- Instagram -->
-      <div class="social-item">
-        <a href="https://instagram.com/YOUR_PAGE" target="_blank" class="social-card">
-          <img src="Screenshot_20260427_175930_Google Play Store.jpg">
-        </a>
-        <span>Instagram</span>
-      </div>
-
-      <!-- TikTok -->
-      <div class="social-item">
-        <a href="https://tiktok.com/@supunsarahansamal" target="_blank" class="social-card">
-          <img src="Screenshot_20260427_180121_Google Play Store.jpg">
-        </a>
-        <span>TikTok</span>
-      </div>
-
-      <!-- Telegram -->
-      <div class="social-item">
-        <a href="https://t.me/YOUR_CHANNEL" target="_blank" class="social-card">
-          <img src="Screenshot_20260427_180353_Google Play Store.jpg">
-        </a>
-        <span>Telegram</span>
-      </div>
-
-      <!-- WhatsApp -->
-      <div class="social-item">
-        <a href="https://wa.me/94703584922" target="_blank" class="social-card">
-          <img src="Screenshot_20260427_180624_Google Play Store.jpg">
-        </a>
-        <span>WhatsApp</span>
-      </div>
-
-    </div>
-
-    <div class="contact-links">
-      <a href="tel:+94703584922" class="call-btn">📞 Call</a>
-      <a href="https://wa.me/94703584922" class="chat-btn">💬 Chat</a>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    © 2026 White Villa Ella
-  </div>
-
+<div class="footer-section">  
+  <h2>Contact</h2>  
+  <p>📞 +94 70 358 4922</p>  
+  <a href="https://wa.me/94703584922" class="whatsapp-btn">💬 WhatsApp</a>  
 </div>
 
-<a href="https://wa.me/94703584922" class="float-btn">💬</a>
+  </div>    <div class="trust-box">  
+    ⭐ Rated 5 Stars  
+  </div>    <!-- 🔥 SOCIAL -->    <div class="social-box">  <h2>Follow Us</h2>  
+
+<div class="social-grid">  
+
+  <!-- Facebook -->  
+  <div class="social-item">  
+    <a href="https://www.facebook.com/share/1KMqBGdvEC/" target="_blank" class="social-card">  
+      <img src="Screenshot_20260427_175614_Google Play Store.jpg">  
+    </a>  
+    <span>Facebook</span>  
+  </div>  
+
+  <!-- Instagram -->  
+  <div class="social-item">  
+    <a href="https://instagram.com/YOUR_PAGE" target="_blank" class="social-card">  
+      <img src="Screenshot_20260427_175930_Google Play Store.jpg">  
+    </a>  
+    <span>Instagram</span>  
+  </div>  
+
+  <!-- TikTok -->  
+  <div class="social-item">  
+    <a href="https://tiktok.com/@supunsarahansamal" target="_blank" class="social-card">  
+      <img src="Screenshot_20260427_180121_Google Play Store.jpg">  
+    </a>  
+    <span>TikTok</span>  
+  </div>  
+
+  <!-- Telegram -->  
+  <div class="social-item">  
+    <a href="https://t.me/YOUR_CHANNEL" target="_blank" class="social-card">  
+      <img src="Screenshot_20260427_180353_Google Play Store.jpg">  
+    </a>  
+    <span>Telegram</span>  
+  </div>  
+
+  <!-- WhatsApp -->  
+  <div class="social-item">  
+    <a href="https://wa.me/94703584922" target="_blank" class="social-card">  
+      <img src="Screenshot_20260427_180624_Google Play Store.jpg">  
+    </a>  
+    <span>WhatsApp</span>  
+  </div>  
+
+</div>  
+
+<div class="contact-links">  
+  <a href="tel:+94703584922" class="call-btn">📞 Call</a>  
+  <a href="https://wa.me/94703584922" class="chat-btn">💬 Chat</a>  
+</div>
+
+  </div>    <div class="footer-bottom">  
+  <p>© 2026 White Villa Ella</p>  
+  <p style="font-size:12px;color:#888;">  
+    🤖 Developer by :- LEHAN KAVIDU  
+  </p>  
+  </div>  </div>  <a href="https://wa.me/94703584922" class="float-btn">💬</a>
