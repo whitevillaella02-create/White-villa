@@ -233,7 +233,7 @@ function closeWelcomePopup(){
     let popup = document.getElementById("welcomePopup");
 
     if(popup){
-        popup.style.transition = "0.10s";
+        popup.style.transition = "0.6s";
         popup.style.opacity = "0";
 
         setTimeout(() => {
