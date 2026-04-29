@@ -46,7 +46,7 @@ style.innerHTML = `
 .popup-box{text-align:center;color:#fff;width:90%;}
 .hotel-icon{font-size:85px;animation:float 2s infinite;}
 .welcome-text{color:#ffd700;letter-spacing:8px;}
-.hotel-name{font-size:42px;margin:10px 0;}
+.hotel-name{font-size:32px;margin:10px 0;}
 
 .hotel-name span{
     display:inline-block;
