@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Feedback - White Villa Ella</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#f4f4f4;
+}
+
+.header{
+    background:#222;
+    color:white;
+    padding:15px;
+    text-align:center;
+    font-size:22px;
+}
+
+.container{
+    width:90%;
+    max-width:600px;
+    margin:20px auto;
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+input, textarea{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    font-size:14px;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    background:#28a745;
+    color:white;
+    border:none;
+    border-radius:5px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#218838;
+}
+
+.feedback-box{
+    margin-top:20px;
+}
+
+.item{
+    background:#f9f9f9;
+    padding:10px;
+    margin-bottom:10px;
+    border-left:4px solid #28a745;
+    border-radius:5px;
+}
+.name{
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+🏨 Customer Feedback - White Villa Ella
+</div>
+
+<div class="container">
+
+<h3>Give Your Feedback</h3>
+
+<input type="text" id="name" placeholder="Your Name">
+<textarea id="message" rows="4" placeholder="Your Feedback"></textarea>
+
+<button onclick="saveFeedback()">Submit</button>
+
+<div class="feedback-box" id="feedbackList">
+<h3>All Feedbacks</h3>
+</div>
+
+</div>
+
+<script>
+
+// Load saved feedbacks
+window.onload = function(){
+    loadFeedback();
+};
+
+function saveFeedback(){
+    let name = document.getElementById("name").value;
+    let message = document.getElementById("message").value;
+
+    if(name === "" || message === ""){
+        alert("Please fill all fields");
+        return;
+    }
+
+    let feedback = {
+        name: name,
+        message: message
+    };
+
+    let feedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
+    feedbacks.unshift(feedback);
+
+    localStorage.setItem("feedbacks", JSON.stringify(feedbacks));
+
+    document.getElementById("name").value = "";
+    document.getElementById("message").value = "";
+
+    loadFeedback();
+}
+
+function loadFeedback(){
+    let feedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
+    let list = document.getElementById("feedbackList");
+
+    list.innerHTML = "<h3>All Feedbacks</h3>";
+
+    feedbacks.forEach(fb => {
+        let div = document.createElement("div");
+        div.className = "item";
+        div.innerHTML = `<div class="name">${fb.name}</div><div>${fb.message}</div>`;
+        list.appendChild(div);
+    });
+}
+
+</script>
+
+</body>
+</html>
