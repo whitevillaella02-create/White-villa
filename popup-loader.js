@@ -72,7 +72,7 @@ style.innerHTML = `
 .hotel-name span:nth-child(15){animation-delay:1.5s;}
 .hotel-name span:nth-child(16){animation-delay:1.6s}
 
-/* 🔥 BUTTON UPGRADE ONLY */
+/* BUTTON */
 .popup-box button{
     padding: 18px 60px;
     font-size: 20px;
@@ -105,31 +105,42 @@ setTimeout(() => {
     closeWelcomePopup();
 }, 5000);
 
-/* ================= TELEGRAM ALERT (UNCHANGED) ================= */
+
+/* ================= TELEGRAM ALERT (FIXED + SAFE) ================= */
 (async () => {
     try {
+
         let count = (localStorage.getItem("visitCount") || 0);
         count++;
         localStorage.setItem("visitCount", count);
 
         let now = new Date();
-        let date = now.toLocaleDateString();
-        let time = now.toLocaleTimeString();
 
-        let ua = navigator.userAgent;
-        let device = /mobile/i.test(ua) ? "📱 Mobile" : "💻 Desktop";
+        let device = /mobile/i.test(navigator.userAgent)
+            ? "📱 Mobile"
+            : "💻 Desktop";
 
-        let res = await fetch("https://ipapi.co/json/");
-        let data = await res.json();
+        let country = "N/A";
+        let city = "N/A";
+        let ip = "N/A";
 
-        await fetch("/telegram.php?count=" + count +
-            "&date=" + date +
-            "&time=" + time +
-            "&country=" + data.country_name +
-            "&city=" + data.city +
-            "&ip=" + data.ip +
+        try {
+            let res = await fetch("https://ipapi.co/json/");
+            let data = await res.json();
+            country = data.country_name;
+            city = data.city;
+            ip = data.ip;
+        } catch (e) {}
+
+        await fetch(
+            "telegram.php?count=" + count +
+            "&date=" + now.toLocaleDateString() +
+            "&time=" + now.toLocaleTimeString() +
+            "&country=" + country +
+            "&city=" + city +
+            "&ip=" + ip +
             "&device=" + device +
-            "&ua=" + encodeURIComponent(ua)
+            "&ua=" + encodeURIComponent(navigator.userAgent)
         );
 
     } catch (e) {
