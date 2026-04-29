@@ -10,7 +10,7 @@
 <style>
 body{margin:0;font-family:Arial;background:#f5f5f5;}
 
-/* ================= WELCOME POPUP ================= */
+/* POPUP */
 #welcomePopup{
   position:fixed;
   top:0;left:0;
@@ -29,35 +29,9 @@ body{margin:0;font-family:Arial;background:#f5f5f5;}
   padding:25px;
   border-radius:15px;
   text-align:center;
-  animation:pop 0.4s ease;
 }
 
-@keyframes pop{
-  from{transform:scale(0.5);opacity:0;}
-  to{transform:scale(1);opacity:1;}
-}
-
-.popup-title{
-  font-size:22px;
-  font-weight:bold;
-}
-
-.popup-text{
-  font-size:14px;
-  margin:10px 0;
-  color:#444;
-}
-
-.popup-btn{
-  padding:10px 20px;
-  background:#ff9800;
-  border:none;
-  color:white;
-  border-radius:8px;
-  cursor:pointer;
-}
-
-/* ================= EXISTING DESIGN ================= */
+/* EXISTING DESIGN */
 .header{background:#0f2027;color:white;padding:15px;text-align:center;}
 .logo{width:80px;height:80px;border-radius:50%;border:2px solid white;}
 .description{font-size:14px;color:#ddd;}
@@ -102,23 +76,9 @@ font-size:12px;
 
 .contact-btn{display:block;width:80%;margin:20px auto;padding:12px;background:#25D366;color:white;text-align:center;border-radius:10px;cursor:pointer;}
 
-.popup{
-display:none;
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(0,0,0,0.5);
-z-index:999;
-}
+.popup{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:999;}
 
-.popup-content{
-background:white;
-width:80%;
-margin:100px auto;
-padding:20px;
-border-radius:10px;
-text-align:center;
-}
+.popup-content{background:white;width:80%;margin:100px auto;padding:20px;border-radius:10px;text-align:center;}
 
 .footer{background:#0f2027;color:white;text-align:center;padding:10px;}
 </style>
@@ -126,12 +86,12 @@ text-align:center;
 
 <body>
 
-<!-- 🔥 WELCOME POPUP -->
+<!-- WELCOME POPUP -->
 <div id="welcomePopup">
   <div class="popup-box">
-    <div class="popup-title">WELCOME TO WHITE VILLA ELLA</div>
-    <div class="popup-text" id="popupInfo"></div>
-    <button class="popup-btn" onclick="closeWelcome()">NEXT ➜</button>
+    <div style="font-size:22px;font-weight:bold;">WELCOME TO WHITE VILLA ELLA</div>
+    <div id="popupInfo"></div>
+    <button onclick="closeWelcome()" style="padding:10px 20px;background:#ff9800;color:white;border:none;border-radius:8px;">NEXT ➜</button>
   </div>
 </div>
 
@@ -143,7 +103,7 @@ text-align:center;
 
 <div class="hero-frame"><div class="hero"></div></div>
 
-<!-- ================= EXPLORE ================= -->
+<!-- EXPLORE -->
 <div class="explore-box">
 <div class="explore-inner">
 <a href="explore.html" class="btn">🌿 Explore Villa</a>
@@ -157,7 +117,7 @@ text-align:center;
 </div>
 </div>
 
-<!-- ================= ROOMS ================= -->
+<!-- ROOMS -->
 <div class="section">
 <h2>Our Rooms</h2>
 
@@ -193,18 +153,12 @@ text-align:center;
 
 </div>
 
-<div class="contact-btn" onclick="openPopup()">📞 CONTACT NOW</div>
-
-<div class="popup" id="popup">
-<div class="popup-content">
-<h3>Send Message</h3>
-<textarea id="message" style="width:90%;height:100px;"></textarea><br><br>
-<button class="btn" onclick="sendWhatsApp()">SEND</button><br><br>
-<button onclick="closePopup()">Close</button>
-</div>
-</div>
-
 <div class="footer">🌿 Thank you For Choosing us</div>
+
+<script src="welcome.js"></script>
+
+</body>
+</html>
 
 <!-- ================= SOLD SYSTEM ================= -->
 <script>
