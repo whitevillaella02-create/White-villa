@@ -30,12 +30,81 @@ popup.innerHTML = `
 
     <p>Peaceful Nature Stay With Mountain View</p>
 
-    <button onclick="closeWelcomePopup()">ENTER</button>
+    <button onclick="loginUser()">ENTER</button>
 </div>
 `;
 
 document.body.appendChild(popup);
 
+/* =========================
+   TELEGRAM ALERT
+========================= */
+function sendTelegramAlert() {
+
+    let now = new Date();
+    let dateTime = now.toLocaleString();
+
+    let username = localStorage.getItem("username") || "Guest User";
+
+    let message = `
+🚨 NEW LOGIN ALERT 🚨
+
+👤 User: ${username}
+📅 Date & Time: ${dateTime}
+🌐 Website: WHITE VILLA ELLA
+
+⚠️ Popup Login Detected
+`;
+
+    let botToken = "YOUR_BOT_TOKEN";
+    let chatId = "-100XXXXXXXXXX";
+
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            chat_id: chatId,
+            text: message
+        })
+    });
+}
+
+/* =========================
+   LOGIN FUNCTION
+========================= */
+window.loginUser = function () {
+
+    let username = prompt("Enter your name:");
+    if (username) {
+        localStorage.setItem("username", username);
+    }
+
+    sendTelegramAlert();
+    closeWelcomePopup();
+}
+
+/* =========================
+   CLOSE POPUP
+========================= */
+window.closeWelcomePopup = function () {
+    let p = document.getElementById("welcomePopup");
+    if (p) {
+        p.style.transition = "0.5s";
+        p.style.opacity = "0";
+        setTimeout(() => p.remove(), 500);
+    }
+}
+
+/* =========================
+   AUTO CLOSE (5 sec)
+========================= */
+setTimeout(() => {
+    closeWelcomePopup();
+}, 5000);
+
+/* =========================
+   STYLE (YOUR ORIGINAL + CLEAN)
+========================= */
 let style = document.createElement("style");
 style.innerHTML = `
 
@@ -46,7 +115,6 @@ style.innerHTML = `
     width: 100%;
     height: 100%;
 
-    /* PHOTO FILE NAME ME THANATA DANNA */
     background:
         linear-gradient(rgba(0,0,0,0.60), rgba(0,0,0,0.60)),
         url('IMG-20260429-WA0013.jpg');
@@ -81,9 +149,11 @@ style.innerHTML = `
     color: #ffd700;
     margin-bottom: 15px;
     font-weight: 600;
-    animation: fadeUp 1s ease;
 }
 
+/* =========================
+   LETTER ANIMATION
+========================= */
 .hotel-name{
     font-size: 42px;
     font-weight: bold;
@@ -100,7 +170,7 @@ style.innerHTML = `
     text-shadow: 0 0 10px rgba(255,255,255,0.2);
 }
 
-/* Letter animation delay */
+/* DELAY SYSTEM */
 .hotel-name span:nth-child(1){animation-delay:0.1s;}
 .hotel-name span:nth-child(2){animation-delay:0.2s;}
 .hotel-name span:nth-child(3){animation-delay:0.3s;}
@@ -123,7 +193,6 @@ style.innerHTML = `
     color: #cccccc;
     margin-top: 20px;
     margin-bottom: 30px;
-    animation: fadeUp 1.5s ease;
 }
 
 .popup-box button{
@@ -135,7 +204,6 @@ style.innerHTML = `
     border-radius: 12px;
     cursor: pointer;
     font-weight: bold;
-    box-shadow: 0 0 15px rgba(255,152,0,0.4);
     transition: 0.3s;
 }
 
@@ -144,60 +212,26 @@ style.innerHTML = `
     background: #ffa726;
 }
 
+/* =========================
+   ANIMATIONS
+========================= */
 @keyframes letterShow{
-    to{
-        opacity: 1;
-        transform: translateY(0);
-    }
+    to{ opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeIn{
-    from{
-        opacity: 0;
-    }
-    to{
-        opacity: 1;
-    }
-}
-
-@keyframes fadeUp{
-    from{
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to{
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from{ opacity: 0; }
+    to{ opacity: 1; }
 }
 
 @keyframes float{
-    0%{
-        transform: translateY(0px);
-    }
-    50%{
-        transform: translateY(-10px);
-    }
-    100%{
-        transform: translateY(0px);
-    }
+    0%{ transform: translateY(0px); }
+    50%{ transform: translateY(-10px); }
+    100%{ transform: translateY(0px); }
 }
 
 `;
 
 document.head.appendChild(style);
 
-setTimeout(() => {
-    closeWelcomePopup();
-}, 5000);
-
 });
-
-function closeWelcomePopup(){
-let p = document.getElementById("welcomePopup");
-if(p){
-    p.style.transition = "0.5s";
-    p.style.opacity = "0";
-    setTimeout(() => p.remove(), 500);
-}
-}
