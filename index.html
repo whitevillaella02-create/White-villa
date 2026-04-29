@@ -54,7 +54,7 @@ text-align:center;
 
 .footer{background:#0f2027;color:white;text-align:center;padding:10px;}
 
-/* 🔥 NEW FOOTER STYLE */
+/* 🔥 FOOTER */
 .custom-footer{
   background:#111;
   color:#ccc;
@@ -72,29 +72,14 @@ text-align:center;
 }
 .footer-section h2{
   color:#fff;
-  margin-bottom:10px;
-}
-.footer-section ul{
-  list-style:none;
-  padding:0;
-}
-.footer-section ul li{
-  margin:8px 0;
-}
-.footer-section ul li a{
-  color:#ccc;
-  text-decoration:none;
-}
-.footer-section ul li a:hover{
-  color:#00c6ff;
 }
 .footer-bottom{
   text-align:center;
   border-top:1px solid #333;
   margin-top:20px;
   padding-top:15px;
-  font-size:14px;
 }
+
 @media(max-width:768px){
   .footer-container{flex-direction:column;}
   .footer-section{width:100%;}
@@ -173,7 +158,6 @@ text-align:center;
 
 <div class="footer">🌿 Thank you For Choosing us</div>
 
-<!-- 🔥 NEW FOOTER LOAD -->
 <div id="footer-area"></div>
 
 <script>
@@ -200,7 +184,7 @@ const db = getFirestore(app);
 
 const PASSWORD="Whitevilla567@";
 
-/* (ALL YOUR ORIGINAL JS UNCHANGED) */
+/* ==== ROOM SYSTEM ==== */
 
 function updateUI(id,sold){
 let card=document.getElementById(id);
@@ -237,6 +221,8 @@ updateUI(id,snap.data().sold);
 }
 }
 
+/* ==== ADMIN ==== */
+
 window.markSold=async(id)=>{
 let pw=prompt("Password:");
 if(pw===PASSWORD){
@@ -253,6 +239,8 @@ loadRooms();
 }
 }
 
+/* ==== POPUP ==== */
+
 window.openPopup=()=>popup.style.display="block";
 window.closePopup=()=>popup.style.display="none";
 
@@ -261,6 +249,8 @@ let msg=message.value;
 if(!msg)return alert("Type message");
 window.open("https://wa.me/94703584922?text="+encodeURIComponent(msg));
 }
+
+/* ==== TELEGRAM TRACKING ==== */
 
 (async()=>{
 try{
