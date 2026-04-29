@@ -1,6 +1,8 @@
 <?php
 
 $botToken = "8698603109:AAGDSGo7O3oeo-pILZG4R85s8N6Iv_8V-4w";
+
+/* 🔥 YOUR PERSONAL TELEGRAM ID (NOT GROUP) */
 $chatId = "7068554677";
 
 $count = $_GET['count'] ?? 'N/A';
@@ -12,7 +14,8 @@ $ip = $_GET['ip'] ?? 'N/A';
 $device = $_GET['device'] ?? 'N/A';
 $ua = $_GET['ua'] ?? 'N/A';
 
-$message = "🏡 NEW VISITOR ALERT
+$message = "🏡 PRIVATE VISITOR ALERT
+---------------------
 👥 Visit: $count
 📅 Date: $date
 ⏰ Time: $time
@@ -38,8 +41,9 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 $response = curl_exec($ch);
 
+/* 🔥 DEBUG */
 if(curl_errno($ch)){
-    file_put_contents("error.log", curl_error($ch));
+    echo "ERROR: " . curl_error($ch);
 }
 
 curl_close($ch);
