@@ -45,7 +45,16 @@ style.innerHTML = `
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, #000000, #111111);
+
+    /* PHOTO FILE NAME ME THANATA DANNA */
+    background:
+        linear-gradient(rgba(0,0,0,0.60), rgba(0,0,0,0.60)),
+        url('YOUR-PHOTO-NAME.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     z-index: 99999;
     display: flex;
     justify-content: center;
