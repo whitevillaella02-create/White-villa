@@ -29,40 +29,18 @@ body{margin:0;font-family:Arial;background:#f5f5f5;}
   padding:25px;
   border-radius:15px;
   text-align:center;
-  animation:pop 0.4s ease;
 }
 
-@keyframes pop{
-  from{transform:scale(0.5);opacity:0;}
-  to{transform:scale(1);opacity:1;}
-}
+.popup-title{font-size:22px;font-weight:bold;}
+.popup-text{font-size:14px;color:#444;margin:10px 0;}
+.popup-btn{padding:10px 20px;background:#ff9800;color:white;border:none;border-radius:8px;}
 
-.popup-title{
-  font-size:22px;
-  font-weight:bold;
-  margin-bottom:10px;
-}
-
-.popup-text{
-  font-size:14px;
-  color:#444;
-  margin:10px 0;
-}
-
-.popup-btn{
-  padding:10px 20px;
-  background:#ff9800;
-  border:none;
-  color:white;
-  border-radius:8px;
-  cursor:pointer;
-}
-
-/* EXISTING DESIGN */
+/* HEADER */
 .header{background:#0f2027;color:white;padding:15px;text-align:center;}
 .logo{width:80px;height:80px;border-radius:50%;border:2px solid white;}
 .description{font-size:14px;color:#ddd;}
 
+/* HERO */
 .hero-frame{
 margin:20px;padding:5px;border-radius:20px;
 background:linear-gradient(270deg, red, orange, yellow, green, cyan, blue, violet);
@@ -71,9 +49,13 @@ background-size:1600% 1600%;animation:move 8s infinite;
 .hero{height:300px;background:url("IMG-20260412-WA0081.jpg");background-size:cover;border-radius:15px;}
 @keyframes move{0%{background-position:0%}100%{background-position:100%}}
 
+/* BOXES */
 .explore-box{margin:20px;padding:3px;border-radius:15px;background:linear-gradient(45deg, green, orange, yellow, red);}
 .explore-inner{background:white;padding:20px;border-radius:12px;text-align:center;}
 
+.btn{padding:10px 20px;background:#ff9800;color:white;border-radius:8px;text-decoration:none;display:inline-block;margin-top:5px;}
+
+/* ROOMS */
 .section{text-align:center;padding:20px;}
 
 .card{
@@ -86,9 +68,16 @@ position:relative;
 
 .card-inner{background:white;padding:20px;border-radius:12px;}
 
-.btn{padding:10px 20px;background:#ff9800;color:white;border-radius:8px;text-decoration:none;display:inline-block;margin-top:5px;}
-
-.admin-btn{padding:5px 10px;font-size:12px;background:#222;color:white;border:none;border-radius:5px;cursor:pointer;margin-top:5px;}
+.admin-btn{
+padding:5px 10px;
+font-size:12px;
+background:#222;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+margin-top:5px;
+}
 
 .sold-label{
 position:absolute;
@@ -101,33 +90,51 @@ border-radius:5px;
 font-size:12px;
 }
 
-.contact-btn{display:block;width:80%;margin:20px auto;padding:12px;background:#25D366;color:white;text-align:center;border-radius:10px;cursor:pointer;}
-
-.popup{
-display:none;
+/* FLOAT BUTTONS */
+.float-contact{
 position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(0,0,0,0.5);
-z-index:999;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+padding:12px;
+border-radius:50%;
+font-size:20px;
+cursor:pointer;
+z-index:9999;
 }
 
-.popup-content{
-background:white;
-width:80%;
-margin:100px auto;
-padding:20px;
-border-radius:10px;
-text-align:center;
+.float-admin{
+position:fixed;
+bottom:80px;
+right:20px;
+background:#ff9800;
+color:white;
+padding:12px;
+border-radius:50%;
+font-size:18px;
+cursor:pointer;
+z-index:9999;
 }
 
+/* ABOUT US */
+.about{
+background:#111;
+color:#ccc;
+padding:30px;
+margin-top:30px;
+}
+
+.about h2{color:white;}
+
+/* FOOTER */
 .footer{background:#0f2027;color:white;text-align:center;padding:10px;}
 </style>
 </head>
 
 <body>
 
-<!-- ================= WELCOME POPUP ================= -->
+<!-- ================= WELCOME ================= -->
 <div id="welcomePopup">
   <div class="popup-box">
     <div class="popup-title">WELCOME TO WHITE VILLA ELLA</div>
@@ -167,7 +174,7 @@ text-align:center;
 <div class="card-inner">
 <h3>Family Room</h3>
 <p>Rs. 7500</p>
-<a href="family.html" class="btn">BOOK NOW</a>
+<a href="family.html" class="btn">BOOK NOW</a><br>
 <button class="admin-btn" onclick="setSold('family')">SET SOLD</button>
 <button class="admin-btn" onclick="setUnsold('family')">UNSOLD</button>
 </div>
@@ -177,7 +184,7 @@ text-align:center;
 <div class="card-inner">
 <h3>Economy Room</h3>
 <p>Rs. 5000</p>
-<a href="economy.html" class="btn">BOOK NOW</a>
+<a href="economy.html" class="btn">BOOK NOW</a><br>
 <button class="admin-btn" onclick="setSold('economy')">SET SOLD</button>
 <button class="admin-btn" onclick="setUnsold('economy')">UNSOLD</button>
 </div>
@@ -187,55 +194,41 @@ text-align:center;
 <div class="card-inner">
 <h3>Budget Room</h3>
 <p>Rs. 4000</p>
-<a href="budget.html" class="btn">BOOK NOW</a>
+<a href="budget.html" class="btn">BOOK NOW</a><br>
 <button class="admin-btn" onclick="setSold('budget')">SET SOLD</button>
 <button class="admin-btn" onclick="setUnsold('budget')">UNSOLD</button>
 </div>
 </div>
+</div>
 
+<!-- ABOUT US -->
+<div class="about">
+<h2>About Us</h2>
+<p>
+White Villa Ella is a peaceful mountain view stay located in Sri Lanka.
+We provide best comfort rooms, nature experience and relaxing holiday environment.
+</p>
 </div>
 
 <div class="footer">🌿 Thank you For Choosing us</div>
 
-<!-- ================= FIREBASE ================= -->
-<script type="module">
+<!-- FLOAT BUTTONS -->
+<div class="float-contact" onclick="window.open('https://wa.me/94703584922')">💬</div>
+<div class="float-admin" onclick="alert('Admin Panel')">⚙️</div>
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyC8Wy3IXaYbPsxdKDnTkMJcerMSTtKBxb0",
-  authDomain: "white-villa.firebaseapp.com",
-  projectId: "white-villa"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-const PASSWORD="Whitevilla567@";
-
-window.setSold=async(id)=>{
-let pw=prompt("Password:");
-if(pw===PASSWORD){
-await updateDoc(doc(db,"rooms",id),{sold:true});
-loadRooms();
-}
+<script>
+function setSold(id){
+document.getElementById(id).style.opacity="0.5";
+sendTelegram(id+" SOLD");
 }
 
-window.setUnsold=async(id)=>{
-let pw=prompt("Password:");
-if(pw===PASSWORD){
-await updateDoc(doc(db,"rooms",id),{sold:false});
-loadRooms();
-}
+function setUnsold(id){
+document.getElementById(id).style.opacity="1";
+sendTelegram(id+" AVAILABLE");
 }
 
 function sendTelegram(msg){
-let now=new Date();
-fetch("telegram.php?msg="+encodeURIComponent(msg)+
-"&date="+now.toLocaleDateString()+
-"&time="+now.toLocaleTimeString()+
-"&ua="+navigator.userAgent);
+fetch("telegram.php?msg="+encodeURIComponent(msg));
 }
 
 function nextPopup(){
@@ -243,20 +236,14 @@ document.getElementById("welcomePopup").style.display="none";
 sendTelegram("WELCOME CLICKED");
 }
 
-window.nextPopup = nextPopup;
-
 window.onload=function(){
-
 let now=new Date();
-
 document.getElementById("popupInfo").innerHTML =
 "📅 "+now.toLocaleDateString()+"<br>"+
-"⏰ "+now.toLocaleTimeString()+"<br>"+
-"📱 "+(/mobile/i.test(navigator.userAgent)?"Mobile":"Desktop");
+"⏰ "+now.toLocaleTimeString();
 
 sendTelegram("VISITOR OPENED SITE");
-};
-
+}
 </script>
 
 </body>
