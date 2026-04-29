@@ -7,7 +7,26 @@ popup.innerHTML = `
 <div class="popup-box">
     <div class="hotel-icon">🏨</div>
 
-    <h1 class="rainbow-text">WHITE VILLA ELLA</h1>
+    <h2 class="welcome-text">WELCOME TO</h2>
+
+    <h1 class="hotel-name">
+        <span>W</span>
+        <span>H</span>
+        <span>I</span>
+        <span>T</span>
+        <span>E</span>
+        <span>&nbsp;</span>
+        <span>V</span>
+        <span>I</span>
+        <span>L</span>
+        <span>L</span>
+        <span>A</span>
+        <span>&nbsp;</span>
+        <span>E</span>
+        <span>L</span>
+        <span>L</span>
+        <span>A</span>
+    </h1>
 
     <p>Peaceful Nature Stay With Mountain View</p>
 
@@ -26,54 +45,19 @@ style.innerHTML = `
     left: 0;
     width: 100%;
     height: 100%;
-    background: black;
-    z-index: 999999;
+    background: linear-gradient(to bottom, #000000, #111111);
+    z-index: 99999;
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: fadeIn 0.5s ease;
-    overflow: hidden;
-}
-
-/* Color moving border */
-
-#welcomePopup::before{
-    content: "";
-    position: absolute;
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(
-        red,
-        orange,
-        yellow,
-        lime,
-        cyan,
-        blue,
-        magenta,
-        red
-    );
-    animation: rotateBorder 6s linear infinite;
-    z-index: 1;
-}
-
-/* Black center */
-
-#welcomePopup::after{
-    content: "";
-    position: absolute;
-    inset: 8px;
-    background: black;
-    z-index: 2;
+    animation: fadeIn 0.6s ease;
 }
 
 .popup-box{
-    position: relative;
-    z-index: 5;
     text-align: center;
     color: white;
     padding: 20px;
     width: 90%;
-    max-width: 500px;
 }
 
 .hotel-icon{
@@ -82,72 +66,99 @@ style.innerHTML = `
     animation: float 2s infinite;
 }
 
-/* Color animated text */
-
-.rainbow-text{
-    font-size: 52px;
-    margin: 10px 0;
-    font-weight: bold;
-    letter-spacing: 2px;
-    line-height: 1.2;
-    text-transform: uppercase;
-
-    background: linear-gradient(
-        90deg,
-        red,
-        orange,
-        yellow,
-        lime,
-        cyan,
-        blue,
-        magenta,
-        red
-    );
-
-    background-size: 400%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    animation: rainbowMove 5s linear infinite, zoom 1s ease;
+.welcome-text{
+    font-size: 22px;
+    letter-spacing: 8px;
+    color: #ffd700;
+    margin-bottom: 15px;
+    font-weight: 600;
+    animation: fadeUp 1s ease;
 }
+
+.hotel-name{
+    font-size: 42px;
+    font-weight: bold;
+    margin: 10px 0;
+    line-height: 1.4;
+}
+
+.hotel-name span{
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: letterShow 0.5s forwards;
+    color: white;
+    text-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+/* Letter animation delay */
+.hotel-name span:nth-child(1){animation-delay:0.1s;}
+.hotel-name span:nth-child(2){animation-delay:0.2s;}
+.hotel-name span:nth-child(3){animation-delay:0.3s;}
+.hotel-name span:nth-child(4){animation-delay:0.4s;}
+.hotel-name span:nth-child(5){animation-delay:0.5s;}
+.hotel-name span:nth-child(6){animation-delay:0.6s;}
+.hotel-name span:nth-child(7){animation-delay:0.7s;}
+.hotel-name span:nth-child(8){animation-delay:0.8s;}
+.hotel-name span:nth-child(9){animation-delay:0.9s;}
+.hotel-name span:nth-child(10){animation-delay:1s;}
+.hotel-name span:nth-child(11){animation-delay:1.1s;}
+.hotel-name span:nth-child(12){animation-delay:1.2s;}
+.hotel-name span:nth-child(13){animation-delay:1.3s;}
+.hotel-name span:nth-child(14){animation-delay:1.4s;}
+.hotel-name span:nth-child(15){animation-delay:1.5s;}
+.hotel-name span:nth-child(16){animation-delay:1.6s;}
 
 .popup-box p{
     font-size: 18px;
-    color: #ccc;
+    color: #cccccc;
+    margin-top: 20px;
     margin-bottom: 30px;
+    animation: fadeUp 1.5s ease;
 }
 
 .popup-box button{
-    padding: 14px 35px;
+    padding: 14px 38px;
     font-size: 18px;
-    font-weight: bold;
     background: #ff9800;
     border: none;
     color: white;
     border-radius: 12px;
     cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(255,152,0,0.4);
     transition: 0.3s;
 }
 
 .popup-box button:hover{
     transform: scale(1.05);
+    background: #ffa726;
 }
 
-@keyframes zoom{
-    0%{
-        transform: scale(0);
-    }
-    100%{
-        transform: scale(1);
+@keyframes letterShow{
+    to{
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
 @keyframes fadeIn{
-    0%{
+    from{
         opacity: 0;
     }
-    100%{
+    to{
         opacity: 1;
+    }
+}
+
+@keyframes fadeUp{
+    from{
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
@@ -163,57 +174,21 @@ style.innerHTML = `
     }
 }
 
-@keyframes rotateBorder{
-    from{
-        transform: rotate(0deg);
-    }
-    to{
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes rainbowMove{
-    from{
-        background-position: 0%;
-    }
-    to{
-        background-position: 400%;
-    }
-}
-
-@media(max-width: 600px){
-    .rainbow-text{
-        font-size: 40px;
-    }
-
-    .popup-box p{
-        font-size: 16px;
-    }
-
-    .hotel-icon{
-        font-size: 75px;
-    }
-}
-
 `;
 
 document.head.appendChild(style);
 
 setTimeout(() => {
     closeWelcomePopup();
-}, 6000);
+}, 5000);
 
 });
 
 function closeWelcomePopup(){
-    let p = document.getElementById("welcomePopup");
-
-    if(p){
-        p.style.transition = "0.5s";
-        p.style.opacity = "0";
-
-        setTimeout(() => {
-            p.remove();
-        }, 500);
-    }
+let p = document.getElementById("welcomePopup");
+if(p){
+    p.style.transition = "0.5s";
+    p.style.opacity = "0";
+    setTimeout(() => p.remove(), 500);
+}
 }
