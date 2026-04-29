@@ -87,7 +87,7 @@ style.innerHTML = `
 }
 
 .hotel-name{
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
     margin: 10px 0;
     line-height: 1.4;
