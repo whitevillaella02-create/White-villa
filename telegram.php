@@ -1,7 +1,7 @@
 <?php
 
 $botToken = "8698603109:AAGDSGo7O3oeo-pILZG4R85s8N6Iv_8V-4w";
-$chatId = "7068554677";
+$chatId = "-1003986545400";
 
 $count = $_GET['count'];
 $date = $_GET['date'];
