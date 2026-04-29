@@ -29,7 +29,7 @@ background-size:1600% 1600%;animation:move 8s infinite;
 .card-inner{background:white;padding:20px;border-radius:12px;}
 
 .btn{padding:10px 20px;background:#ff9800;color:white;border-radius:8px;text-decoration:none;display:inline-block;margin-top:5px;}
-.admin-btn{padding:5px 10px;font-size:12px;background:#222;}
+.admin-btn{padding:5px 10px;font-size:12px;background:#222;color:white;border:none;border-radius:5px;}
 
 .sold-label{position:absolute;top:10px;right:10px;background:red;color:white;padding:5px;border-radius:5px;}
 
@@ -40,50 +40,19 @@ display:none;
 position:fixed;
 top:0;left:0;
 width:100%;height:100%;
-background:rgba(0,0,0,0.5);
+background:rgba(0,0,0,0.6);
 z-index:999;
 }
 .popup-content{
 background:white;
-width:80%;
-margin:100px auto;
+width:85%;
+margin:120px auto;
 padding:20px;
 border-radius:10px;
 text-align:center;
 }
 
 .footer{background:#0f2027;color:white;text-align:center;padding:10px;}
-
-/* 🔥 FOOTER */
-.custom-footer{
-  background:#111;
-  color:#ccc;
-  padding:40px 20px;
-}
-.footer-container{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:space-between;
-}
-.footer-section{
-  width:30%;
-  min-width:250px;
-  margin-bottom:20px;
-}
-.footer-section h2{
-  color:#fff;
-}
-.footer-bottom{
-  text-align:center;
-  border-top:1px solid #333;
-  margin-top:20px;
-  padding-top:15px;
-}
-
-@media(max-width:768px){
-  .footer-container{flex-direction:column;}
-  .footer-section{width:100%;}
-}
 </style>
 </head>
 
@@ -147,6 +116,7 @@ text-align:center;
 
 <div class="contact-btn" onclick="openPopup()">📞 CONTACT NOW</div>
 
+<!-- POPUP FIXED -->
 <div class="popup" id="popup">
 <div class="popup-content">
 <h3>Send Message</h3>
@@ -161,6 +131,7 @@ text-align:center;
 <div id="footer-area"></div>
 
 <script>
+/* FOOTER LOAD */
 fetch("footer.html")
 .then(res => res.text())
 .then(data => {
@@ -184,33 +155,50 @@ const db = getFirestore(app);
 
 const PASSWORD="Whitevilla567@";
 
-/* ==== ROOM SYSTEM ==== */
+/* ================= POPUP FIX ================= */
+const popup = document.getElementById("popup");
+const message = document.getElementById("message");
 
+window.openPopup=()=>popup.style.display="block";
+window.closePopup=()=>popup.style.display="none";
+
+window.sendWhatsApp=()=>{
+if(!message.value) return alert("Type message");
+window.open("https://wa.me/94703584922?text="+encodeURIComponent(message.value));
+};
+
+/* ================= SOLD SYSTEM ================= */
 function updateUI(id,sold){
 let card=document.getElementById(id);
 let btn=card.querySelector("a");
 
 if(sold){
 card.style.opacity="0.5";
+
 if(!card.querySelector(".sold-label")){
 let l=document.createElement("div");
 l.className="sold-label";
 l.innerText="SOLD OUT";
 card.appendChild(l);
 }
+
 btn.innerText="SOLD OUT";
 btn.removeAttribute("href");
 btn.style.background="gray";
+
 }else{
 card.style.opacity="1";
+
 let l=card.querySelector(".sold-label");
 if(l)l.remove();
+
 btn.innerText="BOOK NOW";
 btn.href=id+".html";
 btn.style.background="#ff9800";
 }
 }
 
+/* ================= FIREBASE ================= */
 async function loadRooms(){
 let rooms=["family","economy","budget"];
 for(let id of rooms){
@@ -220,8 +208,6 @@ updateUI(id,snap.data().sold);
 }
 }
 }
-
-/* ==== ADMIN ==== */
 
 window.markSold=async(id)=>{
 let pw=prompt("Password:");
@@ -239,24 +225,9 @@ loadRooms();
 }
 }
 
-/* ==== POPUP ==== */
-
-window.openPopup=()=>popup.style.display="block";
-window.closePopup=()=>popup.style.display="none";
-
-window.sendWhatsApp=()=>{
-let msg=message.value;
-if(!msg)return alert("Type message");
-window.open("https://wa.me/94703584922?text="+encodeURIComponent(msg));
-}
-
-/* ==== TELEGRAM TRACKING ==== */
-
+/* ================= TELEGRAM ================= */
 (async()=>{
 try{
-let count=localStorage.getItem("visitCount")||0;
-count++; localStorage.setItem("visitCount",count);
-
 let now=new Date();
 let date=now.toLocaleDateString();
 let time=now.toLocaleTimeString();
@@ -264,11 +235,14 @@ let time=now.toLocaleTimeString();
 let ua=navigator.userAgent;
 let device=/mobile/i.test(ua)?"📱 Mobile":"💻 Desktop";
 
-let res=await fetch("https://ipapi.co/json/");
-let data=await res.json();
-
-fetch(`telegram.php?count=${count}&date=${date}&time=${time}&country=${data.country_name}&city=${data.city}&ip=${data.ip}&device=${device}&ua=${ua}`);
-
+fetch("https://api.telegram.org/botYOUR_BOT_TOKEN/sendMessage",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+chat_id:"YOUR_CHAT_ID",
+text:`🏡 WHITE VILLA VISIT\nDate: ${date}\nTime: ${time}\nDevice: ${device}`
+})
+});
 }catch(e){}
 })();
 
