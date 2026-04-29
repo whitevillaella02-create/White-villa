@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Welcome - White Villa Ella</title>
+
+<style>
+body{
+  margin:0;
+  padding:0;
+  background:black;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  font-family:Arial;
+  overflow:hidden;
+}
+
+/* ✨ Animated Glow Text */
+h1{
+  font-size:38px;
+  text-align:center;
+  color:white;
+  opacity:0;
+  animation:fadeIn 2s ease forwards;
+  text-shadow:
+    0 0 10px #00f,
+    0 0 20px #0ff,
+    0 0 40px #0ff;
+}
+
+/* ✨ Light pulse effect */
+h1 span{
+  display:block;
+  font-size:42px;
+  animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+  from{ text-shadow:0 0 10px #00f,0 0 20px #0ff; }
+  to{ text-shadow:0 0 20px #0ff,0 0 40px #00f; }
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:scale(0.8);}
+  to{opacity:1; transform:scale(1);}
+}
+
+/* 🔥 Button */
+button{
+  margin-top:50px;
+  padding:15px 50px;
+  font-size:20px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(45deg,#00c6ff,#0072ff);
+  color:white;
+  cursor:pointer;
+  box-shadow:0 0 20px #0ff;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 30px #0ff;
+}
+
+/* 🌊 background moving light */
+.bg{
+  position:absolute;
+  width:200%;
+  height:200%;
+  background:radial-gradient(circle,#0ff33a10,transparent);
+  animation:move 10s linear infinite;
+}
+
+@keyframes move{
+  from{transform:translate(-25%,-25%);}
+  to{transform:translate(25%,25%);}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<h1>
+  <span>WELCOME TO</span>
+  WHITE VILLA ELLA
+</h1>
+
+<button onclick="goNext()">ENTER</button>
+
+<script>
+function goNext(){
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
