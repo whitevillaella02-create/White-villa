@@ -3,15 +3,21 @@
 $botToken = "8698603109:AAGDSGo7O3oeo-pILZG4R85s8N6Iv_8V-4w";
 $chatId = "-1003986545400";
 
-$count = $_GET['count'];
-$date = $_GET['date'];
-$time = $_GET['time'];
-$country = $_GET['country'];
-$city = $_GET['city'];
-$ip = $_GET['ip'];
-$device = $_GET['device'];
-$ua = $_GET['ua'];
+/* =========================
+   SAFE INPUT HANDLING
+========================= */
+$count   = $_GET['count'] ?? 'N/A';
+$date    = $_GET['date'] ?? 'N/A';
+$time    = $_GET['time'] ?? 'N/A';
+$country = $_GET['country'] ?? 'N/A';
+$city    = $_GET['city'] ?? 'N/A';
+$ip      = $_GET['ip'] ?? 'N/A';
+$device  = $_GET['device'] ?? 'N/A';
+$ua      = $_GET['ua'] ?? 'N/A';
 
+/* =========================
+   MESSAGE FORMAT
+========================= */
 $message = "
 🏡 NEW VISITOR ALERT
 ---------------------
@@ -25,6 +31,9 @@ $message = "
 🧠 Browser: $ua
 ";
 
+/* =========================
+   TELEGRAM API REQUEST
+========================= */
 $url = "https://api.telegram.org/bot$botToken/sendMessage";
 
 $data = [
@@ -37,10 +46,18 @@ $options = [
     'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
     'method'  => 'POST',
     'content' => http_build_query($data),
+    'timeout' => 5
   ],
 ];
 
 $context = stream_context_create($options);
-file_get_contents($url, false, $context);
+$result = @file_get_contents($url, false, $context);
+
+/* =========================
+   OPTIONAL DEBUG LOG
+========================= */
+if ($result === false) {
+    file_put_contents("telegram_error.log", "Failed at " . date("Y-m-d H:i:s") . "\n", FILE_APPEND);
+}
 
 ?>
