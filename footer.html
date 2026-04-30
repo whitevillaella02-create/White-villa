@@ -13,31 +13,17 @@ body{
     color:white;
 }
 
-/* About Section */
+/* ABOUT */
 .about{
     text-align:center;
     padding:40px 20px;
 }
 
-.about h1{
-    font-size:28px;
-    margin-bottom:10px;
-}
-
-.about p{
-    color:#bbb;
-}
-
-/* Feedback Section */
+/* FEEDBACK */
 .feedback-section{
     width:90%;
     max-width:800px;
     margin:20px auto;
-}
-
-.feedback-section h2{
-    text-align:center;
-    margin-bottom:20px;
 }
 
 .feedback-box{
@@ -56,7 +42,14 @@ body{
 .name{
     color:#00ffcc;
     font-weight:bold;
-    margin-bottom:5px;
+}
+
+/* FIX IMAGE ERROR */
+.social-card img{
+  width:50px;
+  height:50px;
+  border-radius:12px;
+  object-fit:cover;
 }
 </style>
 </head>
@@ -65,15 +58,14 @@ body{
 
 <!-- ABOUT -->
 <div class="about">
-    <h1>🏨 White Villa Ella</h1>
-    <p>Experience the beauty of Ella with comfort, nature and relaxation 🌿</p>
+<h1>🏨 White Villa Ella</h1>
+<p>Experience the beauty of Ella with comfort 🌿</p>
 </div>
 
 <!-- FEEDBACK -->
 <div class="feedback-section">
-    <h2>💬 What Our Customers Say</h2>
-
-    <div class="feedback-box" id="feedbackList"></div>
+<h2>💬 What Our Customers Say</h2>
+<div class="feedback-box" id="feedbackList"></div>
 </div>
 
 <script>
@@ -81,12 +73,15 @@ function loadFeedback(){
     let feedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
     let list = document.getElementById("feedbackList");
 
+    // clear first
+    list.innerHTML = "";
+
     if(feedbacks.length === 0){
-        list.innerHTML = "<p style='text-align:center;color:#777;'>No feedback yet</p>";
+        list.innerHTML = "<p style='color:#777;text-align:center;'>No feedback yet</p>";
         return;
     }
 
-    feedbacks.forEach(fb => {
+    feedbacks.forEach(fb=>{
         let div = document.createElement("div");
         div.className = "item";
         div.innerHTML = `
@@ -100,7 +95,7 @@ function loadFeedback(){
 loadFeedback();
 </script>
 
-<!-- 🔥 FULL FOOTER FINAL WITH SOCIAL LINKS -->
+<!-- 🔥 YOUR FOOTER (UNCHANGED DESIGN) -->
 <style>
 .custom-footer{
   background:#0a0a0a;
@@ -178,7 +173,6 @@ loadFeedback();
   overflow-x:auto;
 }
 
-/* ITEM */
 .social-item{
   display:flex;
   flex-direction:column;
@@ -186,7 +180,6 @@ loadFeedback();
   min-width:60px;
 }
 
-/* IMAGE ICON */
 .social-card img{
   width:50px;
   height:50px;
@@ -200,13 +193,11 @@ loadFeedback();
   transform:scale(1.1);
 }
 
-/* NAME */
 .social-item span{
   font-size:11px;
   color:#ccc;
 }
 
-/* buttons */
 .contact-links{margin-top:15px;}
 
 .call-btn, .chat-btn{
@@ -250,90 +241,89 @@ loadFeedback();
 
 <div class="custom-footer">
 
-  <div class="footer-container">
+<div class="footer-container">
 
 <div class="footer-section">
-  <h2>About Us</h2>
-  <p>Experience the beauty of Ella with White Villa.</p>
+<h2>About Us</h2>
+<p>Experience the beauty of Ella with White Villa.</p>
 </div>
 
 <div class="footer-section">
-  <h2>Quick Links</h2>
-  <ul>
-    <li><a href="#">About Us</a></li>
-    <li><a href="#">Rooms</a></li>
-    <li><a href="#">Contact</a></li>
-  </ul>
+<h2>Quick Links</h2>
+<ul>
+<li><a href="#">About Us</a></li>
+<li><a href="#">Rooms</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
 </div>
 
 <div class="footer-section">
-  <h2>Contact</h2>
-  <p>📞 +94 70 358 4922</p>
-  <a href="https://wa.me/94703584922" class="whatsapp-btn">💬 WhatsApp</a>
+<h2>Contact</h2>
+<p>📞 +94 70 358 4922</p>
+<a href="https://wa.me/94703584922" class="whatsapp-btn">💬 WhatsApp</a>
 </div>
 
-  </div>
+</div>
 
-  <div class="trust-box">
-    ⭐ Rated 5 Stars
-  </div>
+<div class="trust-box">
+⭐ Rated 5 Stars
+</div>
 
-  <!-- 🔥 SOCIAL -->
-  <div class="social-box">
-  <h2>Follow Us</h2>
+<div class="social-box">
+<h2>Follow Us</h2>
 
 <div class="social-grid">
 
-  <div class="social-item">
-    <a href="https://www.facebook.com/share/1KMqBGdvEC/" target="_blank" class="social-card">
-      <img src="Screenshot_20260427_175614_Google Play Store.jpg">
-    </a>
-    <span>Facebook</span>
-  </div>
+<div class="social-item">
+<a href="https://www.facebook.com/share/1KMqBGdvEC/" target="_blank" class="social-card">
+<img src="Screenshot_20260427_175614_Google%20Play%20Store.jpg">
+</a>
+<span>Facebook</span>
+</div>
 
-  <div class="social-item">
-    <a href="https://instagram.com/YOUR_PAGE" target="_blank" class="social-card">
-      <img src="Screenshot_20260427_175930_Google Play Store.jpg">
-    </a>
-    <span>Instagram</span>
-  </div>
+<div class="social-item">
+<a href="https://instagram.com/YOUR_PAGE" target="_blank" class="social-card">
+<img src="Screenshot_20260427_175930_Google%20Play%20Store.jpg">
+</a>
+<span>Instagram</span>
+</div>
 
-  <div class="social-item">
-    <a href="https://tiktok.com/@supunsarahansamal" target="_blank" class="social-card">
-      <img src="Screenshot_20260427_180121_Google Play Store.jpg">
-    </a>
-    <span>TikTok</span>
-  </div>
+<div class="social-item">
+<a href="https://tiktok.com/@supunsarahansamal" target="_blank" class="social-card">
+<img src="Screenshot_20260427_180121_Google%20Play%20Store.jpg">
+</a>
+<span>TikTok</span>
+</div>
 
-  <div class="social-item">
-    <a href="https://t.me/YOUR_CHANNEL" target="_blank" class="social-card">
-      <img src="Screenshot_20260427_180353_Google Play Store.jpg">
-    </a>
-    <span>Telegram</span>
-  </div>
+<div class="social-item">
+<a href="https://t.me/YOUR_CHANNEL" target="_blank" class="social-card">
+<img src="Screenshot_20260427_180353_Google%20Play%20Store.jpg">
+</a>
+<span>Telegram</span>
+</div>
 
-  <div class="social-item">
-    <a href="https://wa.me/94703584922" target="_blank" class="social-card">
-      <img src="Screenshot_20260427_180624_Google Play Store.jpg">
-    </a>
-    <span>WhatsApp</span>
-  </div>
+<div class="social-item">
+<a href="https://wa.me/94703584922" target="_blank" class="social-card">
+<img src="Screenshot_20260427_180624_Google%20Play%20Store.jpg">
+</a>
+<span>WhatsApp</span>
+</div>
 
 </div>
 
 <div class="contact-links">
-  <a href="tel:+94703584922" class="call-btn">📞 Call</a>
-  <a href="https://wa.me/94703584922" class="chat-btn">💬 Chat</a>
+<a href="tel:+94703584922" class="call-btn">📞 Call</a>
+<a href="https://wa.me/94703584922" class="chat-btn">💬 Chat</a>
 </div>
 
-  </div>
+</div>
 
-  <div class="footer-bottom">
-  <p>© 2026 White Villa Ella</p>
-  <p style="font-size:12px;color:#888;">
-    🤖 Developer by :- LEHAN KAVIDU
-  </p>
-  </div>
+<div class="footer-bottom">
+<p>© 2026 White Villa Ella</p>
+<p style="font-size:12px;color:#888;">
+🤖 Developer by :- LEHAN KAVIDU
+</p>
+</div>
 
 </div>
 
