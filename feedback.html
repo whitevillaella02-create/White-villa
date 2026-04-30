@@ -65,8 +65,20 @@ button:hover{
     margin-bottom:10px;
     border-left:4px solid #28a745;
     border-radius:5px;
+    position:relative;
 }
+
 .name{
+    font-weight:bold;
+}
+
+/* ❌ delete button */
+.delete-btn{
+    position:absolute;
+    top:5px;
+    right:10px;
+    color:red;
+    cursor:pointer;
     font-weight:bold;
 }
 </style>
@@ -95,6 +107,9 @@ button:hover{
 
 <script>
 
+// 🔐 PASSWORD (change this)
+const ADMIN_PASSWORD = "1234";
+
 // Load saved feedbacks
 window.onload = function(){
     loadFeedback();
@@ -109,10 +124,7 @@ function saveFeedback(){
         return;
     }
 
-    let feedback = {
-        name: name,
-        message: message
-    };
+    let feedback = { name, message };
 
     let feedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
     feedbacks.unshift(feedback);
@@ -131,12 +143,33 @@ function loadFeedback(){
 
     list.innerHTML = "<h3>All Feedbacks</h3>";
 
-    feedbacks.forEach(fb => {
+    feedbacks.forEach((fb, index) => {
         let div = document.createElement("div");
         div.className = "item";
-        div.innerHTML = `<div class="name">${fb.name}</div><div>${fb.message}</div>`;
+
+        div.innerHTML = `
+            <span class="delete-btn" onclick="deleteFeedback(${index})">❌</span>
+            <div class="name">${fb.name}</div>
+            <div>${fb.message}</div>
+        `;
+
         list.appendChild(div);
     });
+}
+
+// ❌ Delete function with password
+function deleteFeedback(index){
+    let pass = prompt("Enter Admin Password:");
+
+    if(pass === ADMIN_PASSWORD){
+        let feedbacks = JSON.parse(localStorage.getItem("feedbacks")) || [];
+        feedbacks.splice(index, 1);
+        localStorage.setItem("feedbacks", JSON.stringify(feedbacks));
+        loadFeedback();
+        alert("Deleted successfully!");
+    } else {
+        alert("Wrong Password!");
+    }
 }
 
 </script>
